@@ -16,3 +16,20 @@ module.exports.registerUser = async (req, res, next) => {
         next(error);
     }
 };
+
+module.exports.loginUser = async (req, res, next) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) {
+            throw createError(404, 'Invalid data');
+        }
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+            throw createError(404, 'Invalid data');
+        }
+        res.status(200).send({ data: user });
+    } catch (error) {
+        next(error);
+    }
+};
