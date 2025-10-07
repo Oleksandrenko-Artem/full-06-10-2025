@@ -2,9 +2,8 @@ POST http://localhost:3000/users/register HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "admin01",
-    "email": "admin01@gmail.com",
-    "birthYear": 2008,
-    "password": "admin01@gmail.com",
-    "role": "admin"
+    "name": "user01",
+    "email": "user01@gmail.com",
+    "birthYear": 2001,
+    "password": "user01@gmail.com"
 }
