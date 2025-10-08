@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const createError = require('http-errors');
 const User = require("../models/User");
+const CONSTANTS = require('../constants');
 
 module.exports.registerUser = async (req, res, next) => {
     try {
@@ -28,7 +30,8 @@ module.exports.loginUser = async (req, res, next) => {
         if (!match) {
             throw createError(404, 'Invalid data');
         }
-        res.status(200).send({ data: user });
+        const token = jwt.sign({ id: user._id }, CONSTANTS.JWT_SECRET, { expiresIn: '7d' });
+        res.status(200).send({ data: { token, user } });
     } catch (error) {
         next(error);
     }
