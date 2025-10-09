@@ -36,3 +36,11 @@ module.exports.loginUser = async (req, res, next) => {
         next(error);
     }
 };
+
+module.exports.getAccount = async (req, res, next) => {
+    try {
+        res.status(200).send({ data: req.user });
+    } catch (error) {
+        next(error);
+    }
+};
