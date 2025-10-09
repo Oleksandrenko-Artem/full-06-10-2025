@@ -8,12 +8,12 @@ module.exports.auth = async (req, res, next) => {
         const rowAuthorization = req.headers.authorization;
         const token = rowAuthorization?.replace('Bearer', '').trim();
         if (!token) {
-            throw createError(401, 'Token required');
+            return next(createError(401, 'Token required'));
         }
         const decoded = jwt.verify(token, CONSTANTS.JWT_SECRET);
         const user = await User.findById(decoded?.id);
         if (!user) {
-            throw createError(401, 'Invalid token');
+            return next(createError(401, 'Invalid token'));
         }
         req.user = user;
         next();
@@ -21,4 +21,11 @@ module.exports.auth = async (req, res, next) => {
         console.log('auth error --->', error);
         next(createError(401, 'Unauthorized'));
     }
+};
+
+module.exports.isAdmin = async (req, res, next) => {
+    if (req.user?.role === 'admin') {
+        return next();
+    }
+    next(createError(403, 'Only admin'));
 };
