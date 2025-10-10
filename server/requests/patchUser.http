@@ -1,0 +1,9 @@
+PATCH http://localhost:3000/users/68e80a12f1c301c416a869b4 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZTgwYTEyZjFjMzAxYzQxNmE4NjliNCIsImlhdCI6MTc2MDEyNDE1NCwiZXhwIjoxNzYwNzI4OTU0fQ.ITcXwESNJdS9C9C5gpYiTkyuhZjShvjorqplAhPTfx0
+
+{
+    "name": "alex44",
+    "birthYear": 2004,
+    "password": "alex44alex44"
+}

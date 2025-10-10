@@ -29,3 +29,10 @@ module.exports.isAdmin = async (req, res, next) => {
     }
     next(createError(403, 'Only admin'));
 };
+
+module.exports.isOwner = async (req, res, next) => {
+    if (req.params.idUser === req.user._id.toString()) {
+        return next();
+    }
+    next(createError(403, 'Only owner'));
+};

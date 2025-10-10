@@ -53,3 +53,19 @@ module.exports.getAllUsers = async (req, res, next) => {
         next(error);
     }
 };
+
+module.exports.patchUser = async (req, res, next) => {
+    try {
+        const updateData = req.body;
+        if (updateData.password) {
+            updateData.password = await bcrypt.hash(updateData.password, 10);
+        }
+        const updateUser = await User.findByIdAndUpdate(req.params.idUser, updateData, { new: true });
+        if(!updateUser){
+            throw createError(404, "User not found")
+        }
+        res.status(200).send({ data: updateUser });
+    } catch (error) {
+        next(error);
+    }
+};
