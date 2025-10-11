@@ -1,7 +1,7 @@
-POST http://localhost:3000/categories HTTP/1.1
+PATCH http://localhost:3000/categories/68eacdb023ea1a975c3d218a HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZWFjNDBjMjVmNTZiZjRlYzhiNDhkNCIsImlhdCI6MTc2MDIxNjEzNCwiZXhwIjoxNzYwODIwOTM0fQ.dQC4IbSWlRjr6Z2MLkhCVG4rh6imIuioMtEcp2_uJJg
 
 {
-    "name": "Test1"
+    "name": "Clother for kids"
 }

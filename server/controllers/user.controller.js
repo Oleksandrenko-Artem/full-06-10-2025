@@ -66,6 +66,9 @@ module.exports.patchUser = async (req, res, next) => {
         }
         res.status(200).send({ data: updateUser });
     } catch (error) {
+        if (error.code === 11000) {
+            return next(createError(409, 'Email is already exists'));
+        }
         next(error);
     }
 };

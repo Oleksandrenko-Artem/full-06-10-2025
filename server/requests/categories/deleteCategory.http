@@ -1,0 +1,2 @@
+DELETE http://localhost:3000/categories/68eacc3823ea1a975c3d2183 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZWFjNDBjMjVmNTZiZjRlYzhiNDhkNCIsImlhdCI6MTc2MDIxNjEzNCwiZXhwIjoxNzYwODIwOTM0fQ.dQC4IbSWlRjr6Z2MLkhCVG4rh6imIuioMtEcp2_uJJg
