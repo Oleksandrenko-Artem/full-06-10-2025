@@ -1,0 +1,1 @@
+GET http://localhost:3000/products/68ed7045b6c2870c7b19b111 HTTP/1.1

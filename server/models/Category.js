@@ -10,8 +10,8 @@ categorySchema.virtual('products', {
     foreignField: 'category'
 });
 
-categorySchema.set('toObject', { virtual: true });
-categorySchema.set('toJSON', { virtual: true });
+categorySchema.set('toObject', { virtuals: true });
+categorySchema.set('toJSON', { virtuals: true });
 
 const Category = mongoose.model('Category', categorySchema);
 

@@ -1,0 +1,11 @@
+PATCH http://localhost:3000/products/68eeaeada6202983ceef27d4 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZWU5MjNhMzZjM2EzYTlhM2QyYzA5MSIsImlhdCI6MTc2MDQ2NTU3NiwiZXhwIjoxNzYxMDcwMzc2fQ.2-fTEffoV_oix9m_qF2Ah53Dk12Yd7_rP_McKNSW4qU
+
+{
+    "title": "Test",
+    "price": 40.2,
+    "stockQty": 60,
+    "isSale": true,
+    "category": "68eeb68cc52ac14d414268b8"
+}
