@@ -30,7 +30,7 @@ module.exports.loginUser = async (req, res, next) => {
         if (!match) {
             throw createError(404, 'Invalid data');
         }
-        const token = jwt.sign({ id: user._id }, CONSTANTS.JWT_SECRET, { expiresIn: '7d' });
+        const token = jwt.sign({ id: user._id }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.JWT_EXPIRES });
         res.status(200).send({ data: { token, user } });
     } catch (error) {
         next(error);

@@ -1,0 +1,2 @@
+GET http://localhost:3000/orders?status=new&method=nova_post HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjJhZjAwNGU5ZjJmNmZhYWUyMmVkMSIsImlhdCI6MTc2MDczNTA1MywiZXhwIjoxNzYxMzM5ODUzfQ.CF6C22VZfktGIuX8gmvQwBbQETyK3Ohjf7a35BTenMo

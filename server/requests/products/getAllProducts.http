@@ -1,1 +1,1 @@
-GET http://localhost:3000/products?minPrice=10&maxPrice=1000&availability=true&category=68eff9cca0c458b3d19c4c64&sale=false HTTP/1.1
+GET http://localhost:3000/products HTTP/1.1
