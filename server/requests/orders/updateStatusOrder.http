@@ -1,0 +1,7 @@
+PATCH http://localhost:3000/orders/68f2b0074e9f2f6faae22ef0 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjJhZjAwNGU5ZjJmNmZhYWUyMmVkMSIsImlhdCI6MTc2MDczNTA1MywiZXhwIjoxNzYxMzM5ODUzfQ.CF6C22VZfktGIuX8gmvQwBbQETyK3Ohjf7a35BTenMo
+
+{
+    "status": "paid"
+}

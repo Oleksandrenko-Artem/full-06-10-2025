@@ -1,0 +1,2 @@
+GET http://localhost:3000/orders/68f2b0074e9f2f6faae22ef0 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjJhZjBjNGU5ZjJmNmZhYWUyMmVkNCIsImlhdCI6MTc2MDgyNTMyOCwiZXhwIjoxNzYxNDMwMTI4fQ.dhdff3sHo7iWD8zJvAkxtMKW4R8PPraL7gr9hPUyGRQ
