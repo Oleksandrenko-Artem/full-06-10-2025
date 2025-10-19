@@ -1,7 +1,7 @@
 POST http://localhost:3000/categories HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjJhZjAwNGU5ZjJmNmZhYWUyMmVkMSIsImlhdCI6MTc2MDczNTA1MywiZXhwIjoxNzYxMzM5ODUzfQ.CF6C22VZfktGIuX8gmvQwBbQETyK3Ohjf7a35BTenMo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjU0M2UyNjBhYTk3YzZjZDlmNTk3YyIsImlhdCI6MTc2MDkwNDE2NiwiZXhwIjoxNzYxNTA4OTY2fQ.y08XxADht-xcird8aqWLNm1zNDZ1fzMYMLPpu-82hns
 
 {
-    "name": "Food"
+    "name": "Technic"
 }
