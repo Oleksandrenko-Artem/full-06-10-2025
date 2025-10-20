@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { loginUserThunk } from '../../store/authSlice';
 import { loginValidateSchema } from '../../validation/user.validate';
+import styles from './authForm.module.scss';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -19,16 +20,16 @@ const LoginForm = () => {
     return (
         <Formik initialValues={{ email: '', password: '' }} onSubmit={onSubmit} validationSchema={loginValidateSchema}>
             {() => (
-                <Form>
+                <Form className={styles.form}>
                     <h2>Sign in</h2>
-                    {error && <p>Invalid data</p>}
+                    {error && error.includes('401') && <p>Invalid data</p>}
                     <label>
                         <Field name="email" type="email" placeholder="email" />
-                        <ErrorMessage name="email" />
+                        <ErrorMessage name="email" component="div" className={styles.error} />
                     </label>
                     <label>
                         <Field name="password" type="password" placeholder="password" />
-                        <ErrorMessage name="password" />
+                        <ErrorMessage name="password" component="div" className={styles.error} />
                     </label>
                     <button type='submit'>Login</button>
                 </Form>

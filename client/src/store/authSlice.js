@@ -58,6 +58,8 @@ const authSlice = createSlice({
         builder.addCase(registerUserThunk.pending, pendingCase);
         builder.addCase(logoutUserThunk.fulfilled, (state) => {
             state.user = null;
+            state.error = null;
+            state.isLoading = false;
         });
         builder.addCase(getAccountThunk.fulfilled, fulfilledCase);
         builder.addCase(loginUserThunk.fulfilled, fulfilledCase);

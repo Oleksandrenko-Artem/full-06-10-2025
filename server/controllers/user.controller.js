@@ -28,7 +28,7 @@ module.exports.loginUser = async (req, res, next) => {
         }
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
-            throw createError(404, 'Invalid data');
+            throw createError(401, 'Unauthorized');
         }
         const token = jwt.sign({ id: user._id }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.JWT_EXPIRES });
         res.status(200).send({ data: { token, user } });
