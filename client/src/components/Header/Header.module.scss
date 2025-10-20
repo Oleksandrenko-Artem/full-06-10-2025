@@ -1,7 +1,20 @@
+.logo {
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    p {
+        padding-left: px;
+    }
+}
 .menu {
     display: flex;
     flex-direction: row;
-    li {
-        margin-right: 30px;
-    }
+    gap: 20px;
+}
+.sign {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 5px;
+    border-bottom: 1px solid lightgray;
 }
