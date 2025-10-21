@@ -17,3 +17,5 @@ export const loginUser = (values) => apiClient.post('/users/login', values);
 export const getAccount = () => apiClient.get('/users/account');
 // categories
 export const getAllCategories = () => apiClient.get('/categories');
+// products
+export const getAllProducts = () => apiClient.get('/products');

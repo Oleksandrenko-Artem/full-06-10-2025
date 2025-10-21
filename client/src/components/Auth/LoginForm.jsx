@@ -24,11 +24,11 @@ const LoginForm = () => {
                     <h2>Sign in</h2>
                     {error && error.includes('401') && <p>Invalid data</p>}
                     <label>
-                        <Field name="email" type="email" placeholder="email" />
+                        <Field name="email" type="email" placeholder="Email" />
                         <ErrorMessage name="email" component="div" className={styles.error} />
                     </label>
                     <label>
-                        <Field name="password" type="password" placeholder="password" />
+                        <Field name="password" type="password" placeholder="Password" />
                         <ErrorMessage name="password" component="div" className={styles.error} />
                     </label>
                     <button type='submit'>Login</button>

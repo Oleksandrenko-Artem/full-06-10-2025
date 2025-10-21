@@ -1,11 +1,11 @@
 POST http://localhost:3000/products HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjJhZjAwNGU5ZjJmNmZhYWUyMmVkMSIsImlhdCI6MTc2MDczNTA1MywiZXhwIjoxNzYxMzM5ODUzfQ.CF6C22VZfktGIuX8gmvQwBbQETyK3Ohjf7a35BTenMo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjdjYTM1N2RkMTIwODhlY2E3OWI0OSIsImlhdCI6MTc2MTA2OTYzMSwiZXhwIjoxNzYxNjc0NDMxfQ.vwWJGtie2kWr2Uz9XLpxmbwHUpymEUKNBz7FLjq_mpE
 
 {
-    "title": "Test",
-    "description": "test",
-    "price": 50.20,
-    "stockQty": 40,
-    "category": "68f2af5a4e9f2f6faae22ed9"
+    "title": "Milk",
+    "description": "milk",
+    "price": 50.10,
+    "stockQty": 20,
+    "category": "68f7ca527dd12088eca79b51"
 }

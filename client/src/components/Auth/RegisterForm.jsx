@@ -24,19 +24,19 @@ const RegisterForm = () => {
                     <h2>Sign up</h2>
                     {error && error.includes('409') && <p>Email already exists</p>}
                     <label>
-                        <Field name="name" type="text" placeholder="name" />
+                        <Field name="name" type="text" placeholder="Name" />
                         <ErrorMessage name="name" component="div" className={styles.error} />
                     </label>
                     <label>
-                        <Field name="email" type="email" placeholder="email" />
+                        <Field name="email" type="email" placeholder="Email" />
                         <ErrorMessage name="email" component="div" className={styles.error} />
                     </label>
                     <label>
-                        <Field name="birthYear" type="number" placeholder="number" />
+                        <Field name="birthYear" type="number" placeholder="Number" />
                         <ErrorMessage name="birthYear" component="div" className={styles.error} />
                     </label>
                     <label>
-                        <Field name="password" type="password" placeholder="password" />
+                        <Field name="password" type="password" placeholder="Password" />
                         <ErrorMessage name="password" component="div" className={styles.error} />
                     </label>
                     <button type='submit'>Register</button>
