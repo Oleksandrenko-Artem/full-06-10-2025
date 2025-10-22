@@ -8,7 +8,7 @@ import styles from './Header.module.scss';
 const Header = () => {
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
-    const { categories, error, isLoading } = useSelector((state) => state.categories);
+    const { categories } = useSelector((state) => state.categories);
     useEffect(() => {
         if (categories?.length === 0) {
             dispatch(getAllCategoriesThunk());
@@ -26,6 +26,7 @@ const Header = () => {
                 {user ? (
                     <>
                         <span>Hi, {user?.name}</span>
+                        {user?.role === 'admin' && <Link to="/admin-panel">Admin panel</Link>}
                         <button onClick={logout}>Logout</button>
                     </>
                 ) : (
@@ -44,13 +45,11 @@ const Header = () => {
                     <li>
                         <NavLink to="/">Home</NavLink>
                     </li>
-                    {isLoading && <p>Loading...</p>}
-                    {error && <p>{error?.message}</p>}
                     {categories?.map(showCategory)}
                 </ul>
             </nav>
         </header>
     );
-}
+};
 
 export default Header;
