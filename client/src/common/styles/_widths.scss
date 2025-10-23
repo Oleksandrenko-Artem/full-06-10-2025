@@ -1,0 +1,14 @@
+@use '/src/common/styles/colors' as *;
+
+$buttonPadding: 14px 16px;
+$buttonFontSize: 16px;
+$buttonFontWeight: 600;
+$buttonBorderRadius: 43px;
+$formWidth: 520px;
+$formMarginTop: 36px;
+$formPadding: 24px;
+$formGap: 12px;
+$formBoxShadow: 0px 0px 5px $grey100;
+$inputHeight: 35px;
+$inputWidth: 472px;
+$inputBorder: 1px solid $grey100;

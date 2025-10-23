@@ -15,7 +15,7 @@ module.exports.createProductSchema = Yup.object({
 
 module.exports.updateProductSchema = Yup.object({
     title: titleSchema,
-    description: Yup.string(),
+    description: Yup.string().trim(),
     price: priceSchema,
     stockQty: stockQtySchema,
     category: Yup.string(),

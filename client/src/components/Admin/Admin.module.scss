@@ -1,0 +1,56 @@
+@use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/mixins' as *;
+
+.form {
+    @include form($formWidth,
+        $formMarginTop,
+        $formBoxShadow,
+        $formPadding,
+        $formGap);
+    h2 {
+        text-align: center;
+    }
+    label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        input[type="text"], input[type="number"] {
+            @include input-text-btn(
+                $inputHeight,
+                $inputWidth,
+                $inputBorder,
+                $buttonFontSize,
+                $buttonPadding
+                );
+        }
+        input[type="checkbox"]{
+            height: 20px;
+            width: 20px;
+        }
+        select {
+            @include input-text-btn(
+                $inputHeight,
+                $inputWidth,
+                $inputBorder,
+                $buttonFontSize,
+                $buttonPadding
+                );
+            color: $grey500;
+            padding: 0 0 0 12px;
+        }
+        span {
+            width: 15%;
+            padding: 16px;
+            color: $grey500;
+        }
+    }
+    button {
+        @include btn($white,
+                $buttonPadding,
+                $primary,
+                $buttonFontSize,
+                $buttonFontWeight,
+                $buttonBorderRadius);
+    }
+}

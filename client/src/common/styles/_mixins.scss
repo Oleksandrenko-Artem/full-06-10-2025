@@ -1,0 +1,26 @@
+@mixin form($formWidth, $formMarginTop, $formBoxShadow, $formPadding, $formGap){
+    display: flex;
+    flex-direction: column;
+    width: $formWidth;
+    margin: auto;
+    margin-top: $formMarginTop;
+    box-shadow: $formBoxShadow;
+    padding: $formPadding;
+    gap: $formGap;
+}
+@mixin input-text-btn($inputHeight, $inputWidth, $inputBorder, $buttonFontSize, $buttonPadding){
+    height: $inputHeight;
+    width: $inputWidth;
+    border: $inputBorder;
+    font-size: $buttonFontSize;
+    padding: $buttonPadding;
+}
+@mixin btn($white, $buttonPadding, $primary, $buttonFontSize, $buttonFontWeight, $buttonBorderRadius){
+    color: $white;
+    padding: $buttonPadding;
+    background-color: $primary;
+    font-size: $buttonFontSize;
+    font-weight: $buttonFontWeight;
+    border-radius: $buttonBorderRadius;
+    border: none;
+}

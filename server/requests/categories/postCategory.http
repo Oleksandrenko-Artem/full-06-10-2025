@@ -1,6 +1,6 @@
 POST http://localhost:3000/categories HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjdjYTM1N2RkMTIwODhlY2E3OWI0OSIsImlhdCI6MTc2MTA2OTYzMSwiZXhwIjoxNzYxNjc0NDMxfQ.vwWJGtie2kWr2Uz9XLpxmbwHUpymEUKNBz7FLjq_mpE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjkyZWQ0NmM0MGE2NTUyNzZhOTk1YiIsImlhdCI6MTc2MTE2NTYzMSwiZXhwIjoxNzYxNzcwNDMxfQ.AziHDLnCEFBMYyeiW33NR9A74rZhCSWe4JSgCmVjerg
 
 {
     "name": "Food"
