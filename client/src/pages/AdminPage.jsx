@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import styles from './pages.module.scss';
 
 const AdminPage = () => {
     return (
-        <div>
+        <div className={styles['page-padding']}>
             <h1>Admin panel</h1>
             <ul>
                 <li><Link to="/admin-panel/categories">Categories</Link></li>
@@ -12,6 +13,6 @@ const AdminPage = () => {
             <Outlet />
         </div>
     );
-}
+};
 
 export default AdminPage;

@@ -1,6 +1,21 @@
+@use '/src/common/styles/colors' as *;
+
+.header-div {
+    color: $grey300;
+    background-color: $grey800;
+}
+.header-div, .logo-border, .nav-border {
+    padding: 0 50px 0 50px;
+    border-bottom: 1px solid $grey100;
+}
 .logo {
     display: flex;
-    border-bottom: 1px solid lightgray;
+    justify-content: space-between;
+    padding: 18px 0 18px 0;
+    align-items: center;
+    a {
+        font-size: 24px;
+    }
     p {
         padding-left: px;
     }
@@ -8,6 +23,7 @@
 .menu {
     display: flex;
     flex-direction: row;
+    padding: 16px 0 16px 0;
     gap: 20px;
 }
 .sign {
@@ -15,6 +31,16 @@
     align-items: center;
     flex-direction: row;
     justify-content: flex-end;
-    gap: 5px;
-    border-bottom: 1px solid lightgray;
+    gap: 20px;
+    padding: 12px 0 12px 0;
+    span, a {
+        font-weight: 400;
+    }
+    button {
+        color: $grey300;
+        font-size: 16px;
+        font-weight: 500;
+        background-color: $grey800;
+        border: none;
+    }
 }

@@ -1,0 +1,114 @@
+@use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/mixins' as *;
+
+.section{
+    display: flex;
+    gap: 20px;
+}
+section>div {
+    border: 1px solid $grey100;
+    border-radius: 8px;
+}
+.products-cart {
+    width: 872px;
+    p {
+        text-align: center;
+    }
+    .cart-btn {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 32px 14px 32px;
+        justify-content: space-between;
+        button {
+            cursor: pointer;
+        }
+    }
+    span>button, a {
+        @include btn(
+            $grey700,
+            $buttonPadding,
+            $grey50,
+            $buttonFontSize,
+            $buttonFontWeight,
+            $buttonBorderRadius);
+        }
+}
+.cart-total {
+    width: 424px;
+    height: 296px;
+    padding: 10px 20px 10px 20px;
+    p {
+        padding-left: 12px;
+        font-size: 20px;
+    }
+    ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 12px;
+        border-bottom: 1px solid $grey100;
+        li {
+            text-transform: capitalize;
+        }
+    }
+    .total-last {
+        font-size: 18px;
+        border: none;
+    }
+    button {
+        width: 100%;
+        @include btn($white,
+            $buttonPadding,
+            $primary,
+            $buttonFontSize,
+            $buttonFontWeight,
+            $buttonBorderRadius);
+    }
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $grey100;
+    padding: 12px;
+    .product-title {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        img {
+            width: 80px;
+            height: 80px;
+        }
+        p {
+            color: $grey900;
+            text-transform: capitalize;
+        }
+    }
+    .quantity-btns {
+        display: flex;
+        gap: 20px;
+        width: 134px;
+        height: 50px;
+        border: 1px solid $grey100;
+        border-radius: 50px;
+        align-items: center;
+        padding: 8px;
+        button {
+            color: $grey900;
+            background-color: $grey50;
+            width: 34px;
+            height: 34px;
+            border: 1px solid $grey100;
+            border-radius: 34px;
+        }
+    }
+}
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $grey100;
+    padding: 0 120px 0 12px;
+}

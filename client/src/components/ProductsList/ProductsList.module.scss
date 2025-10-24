@@ -14,7 +14,16 @@
     width: 312px;
     border: 1px solid $grey100;
     padding: 12px;
-    
+    div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .cart-img {
+        position: relative;
+        margin: 0;
+    }
 }
 .picture {
     width: 280px;

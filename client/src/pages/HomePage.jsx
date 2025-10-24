@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProductsThunk } from '../store/productsSlice';
 import ProductsList from '../components/ProductsList/ProductsList';
+import styles from './pages.module.scss';
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -10,13 +11,13 @@ const HomePage = () => {
         dispatch(getAllProductsThunk());
     }, [dispatch]);
     return (
-        <div>
+        <div className={styles['page-padding']}>
             <h1>Home</h1>
             {error && <p>{error}</p>}
             {isLoading && <p>Loading...</p>}
             <ProductsList products={products} />
         </div>
     );
-}
+};
 
 export default HomePage;

@@ -16,6 +16,7 @@
     padding: $buttonPadding;
 }
 @mixin btn($white, $buttonPadding, $primary, $buttonFontSize, $buttonFontWeight, $buttonBorderRadius){
+    cursor: pointer;
     color: $white;
     padding: $buttonPadding;
     background-color: $primary;

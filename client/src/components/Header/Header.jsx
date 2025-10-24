@@ -22,32 +22,44 @@ const Header = () => {
     const logout = () => dispatch(logoutUserThunk());
     return (
         <header>
-            <div className={styles.sign}>
-                {user ? (
-                    <>
-                        <span>Hi, {user?.name}</span>
-                        {user?.role === 'admin' && <Link to="/admin-panel">Admin panel</Link>}
-                        <button onClick={logout}>Logout</button>
-                    </>
-                ) : (
-                    <>
-                        <Link to="/login">Sign in</Link> / {' '}
-                        <Link to="/register">Sign up</Link>
-                    </>
-                )}
+            <div className={styles['header-div']}>
+                <div className={styles.sign}>
+                    {user ? (
+                        <>
+                            <span>Hi, {user?.name}</span>
+                            {user?.role === 'admin' && <Link to="/admin-panel">Admin panel</Link>}
+                            <span>|</span>
+                            <button onClick={logout}>Logout</button>
+                        </>
+                    ) : (
+                            <>
+                                <Link to="/login">Sign in</Link> / {' '}
+                                <Link to="/register">Sign up</Link>
+                            </>
+                    )} 
+                </div>
             </div>
-            <div className={styles.logo}>
-                <img src="/logo.svg" alt="logo" />
-                <p>Ecobazar</p>
+            <div className={styles['header-nav']}>
+                <div className={styles['logo-border']}>
+                    <div className={styles.logo}>
+                        <div>
+                            <NavLink to='/'><img src="/logo.svg" alt="logo" /></NavLink>
+                            <NavLink to='/'>Ecobazar</NavLink> 
+                        </div>
+                        <NavLink to='/cart'>Cart</NavLink>
+                    </div>
+                </div>
+                <div className={styles['nav-border']}>
+                   <nav>
+                        <ul className={styles.menu}>
+                            <li>
+                                <NavLink to="/">Home</NavLink>
+                            </li>
+                            {categories?.map(showCategory)}
+                        </ul>
+                    </nav> 
+                </div>
             </div>
-            <nav>
-                <ul className={styles.menu}>
-                    <li>
-                        <NavLink to="/">Home</NavLink>
-                    </li>
-                    {categories?.map(showCategory)}
-                </ul>
-            </nav>
         </header>
     );
 };

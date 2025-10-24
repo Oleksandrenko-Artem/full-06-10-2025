@@ -1,11 +1,18 @@
 import React from 'react';
-import Icon from '@mdi/react';
-import { mdiSale } from '@mdi/js';
+import { useDispatch } from 'react-redux';
+import { Icon } from '@mdi/react';
+import { mdiSale, mdiCartArrowDown } from '@mdi/js';
+import { addToCart } from '../../store/cartSlice';
 import CONSTANTS from '../../constants';
 import styles from './ProductsList.module.scss';
 
 const ProductItem = (props) => {
-    const { product: { title, price, stockQty, isSale, images, category } } = props;
+    const dispatch = useDispatch();
+    const { product } = props;
+    const { title, price, stockQty, isSale, images, category } = product;
+    const handleAddToCart = () => {
+        dispatch(addToCart(product));
+    };
     return (
         <article className={styles.product}>
             {isSale && <Icon size={1} path={mdiSale} />}
@@ -14,8 +21,11 @@ const ProductItem = (props) => {
             </div>
             <p>{title}</p>
             <p>Category: {category?.name}</p>
-            <h4>${price}</h4>
-            <p>{stockQty >= 0 ? 'In stock' : 'Out of stock'}</p>
+            <h4>${price.toFixed(2)}</h4>
+            <div>
+                <p>{stockQty >= 0 ? 'In stock' : 'Out of stock'}</p>
+                <Icon size={1} path={mdiCartArrowDown} onClick={handleAddToCart} className={styles['cart-img']} />
+            </div>
         </article>
     );
 }

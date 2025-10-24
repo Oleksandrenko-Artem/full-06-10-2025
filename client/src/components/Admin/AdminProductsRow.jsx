@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import CONSTANTS from '../../constants';
+import { Icon } from '@mdi/react';
+import { mdiUpdate, mdiDelete } from '@mdi/js';
 import { deleteProductThunk } from '../../store/productsSlice';
+import CONSTANTS from '../../constants';
 
 const AdminProductsRow = (props) => {
     const dispatch = useDispatch();
@@ -20,8 +22,8 @@ const AdminProductsRow = (props) => {
             <td>{category?.name}</td>
             <td>{isSale ? 'yes' : 'no'}</td>
             <td>{images?.map(showImages)}</td>
-            <td><button onClick={()=>{handleUpdate(product)}}>update</button></td>
-            <td><button onClick={()=>{handleDelete(_id)}}>delete</button></td>
+            <td><Icon onClick={() => { handleUpdate(product) }} size={1} path={mdiUpdate} /></td>
+            <td><Icon onClick={() => { handleDelete(_id) }} size={1} path={mdiDelete} /></td>
         </tr>
     );
 };

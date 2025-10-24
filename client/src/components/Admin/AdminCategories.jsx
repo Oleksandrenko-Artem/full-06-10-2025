@@ -31,6 +31,13 @@ const AdminCategories = () => {
             {error && error.includes('409') && <p>Error: Category has products</p>}
             <h2>Categories</h2>
             <table>
+                <thead>
+                    <tr>
+                        <th>title</th>
+                        <th>update</th>
+                        <th>delete</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {categories?.map(showCategory)}
                 </tbody>

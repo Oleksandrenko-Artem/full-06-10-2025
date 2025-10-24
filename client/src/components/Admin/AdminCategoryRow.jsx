@@ -1,4 +1,6 @@
 import { useDispatch } from "react-redux";
+import { Icon } from '@mdi/react';
+import { mdiUpdate, mdiDelete } from '@mdi/js';
 import { deleteCategoryThunk } from "../../store/categoriesSlice";
 
 const AdminCategoryRow = (props) => {
@@ -10,8 +12,8 @@ const AdminCategoryRow = (props) => {
     return (
         <tr>
             <td>{category.name}</td>
-            <td><button onClick={() => handleUpdate(category)}>Update</button></td>
-            <td><button onClick={()=> handleDelete(category._id)}>Delete</button></td>
+            <td><Icon onClick={() => handleUpdate(category)} size={1} path={mdiUpdate} /></td>
+            <td><Icon onClick={() => handleDelete(category._id)} size={1} path={mdiDelete} /></td>
         </tr>
     );
 };
