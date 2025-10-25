@@ -10,14 +10,20 @@
 }
 .logo {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 18px 0 18px 0;
-    align-items: center;
     a {
-        font-size: 24px;
+        font-size: 38px;
+        padding: 4px;
     }
-    p {
-        padding-left: px;
+    img {
+        width: 34px;
+        margin-top: 15px;
+    }
+    .logo-link {
+        display: flex;
+        align-items: center;
     }
 }
 .menu {

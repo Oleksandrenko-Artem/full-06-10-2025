@@ -15,7 +15,7 @@ const ProductItem = (props) => {
     };
     return (
         <article className={styles.product}>
-            {isSale && <Icon size={1} path={mdiSale} />}
+            {isSale && <Icon size={1.5} path={mdiSale} color='green' />}
             <div className={styles.picture}>
                 <img src={`${CONSTANTS.BASE_URL}/${CONSTANTS.UPLOAD_FOLDER}/${images[0]}`} alt={title} />
             </div>

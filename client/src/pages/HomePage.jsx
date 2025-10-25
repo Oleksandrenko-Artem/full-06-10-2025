@@ -12,7 +12,7 @@ const HomePage = () => {
     }, [dispatch]);
     return (
         <div className={styles['page-padding']}>
-            <h1>Home</h1>
+            <h2>Home</h2>
             {error && <p>{error}</p>}
             {isLoading && <p>Loading...</p>}
             <ProductsList products={products} />

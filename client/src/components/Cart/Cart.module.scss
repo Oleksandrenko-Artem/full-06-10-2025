@@ -2,11 +2,11 @@
 @use '/src/common/styles/widths' as *;
 @use '/src/common/styles/mixins' as *;
 
-.section{
+.cart{
     display: flex;
     gap: 20px;
 }
-section>div {
+section>div>div {
     border: 1px solid $grey100;
     border-radius: 8px;
 }
@@ -111,4 +111,38 @@ section>div {
     align-items: center;
     border-bottom: 1px solid $grey100;
     padding: 0 120px 0 12px;
+}
+.cart-form {
+    @include form(
+        $formWidth,
+        $formMarginTop,
+        $formBoxShadow,
+        $formPadding,
+        $formGap);
+    label {
+        display: flex;
+        flex-direction: column;
+        input, select {
+            @include input-text-btn(
+                $inputHeight,
+                $inputWidth,
+                $inputBorder,
+                $buttonFontSize,
+                $buttonPadding );
+            }
+        select {
+            color: $grey500;
+            text-transform: capitalize;
+            padding: 0 0 0 12px;
+        }
+    }
+    button {
+        @include btn(
+            $white,
+            $buttonPadding,
+            $primary,
+            $buttonFontSize,
+            $buttonFontWeight,
+            $buttonBorderRadius);
+    }
 }

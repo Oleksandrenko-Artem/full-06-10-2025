@@ -4,7 +4,7 @@ import styles from './pages.module.scss';
 const NotFoundPage = () => {
     return (
         <div className={styles['page-padding']}>
-            <h1>Error 404: Not Found Page</h1>
+            <h2>Error 404: Not Found Page</h2>
         </div>
     );
 };

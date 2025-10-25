@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Icon } from '@mdi/react';
+import { mdiPurseOutline } from '@mdi/js';
 import { getAllCategoriesThunk } from '../../store/categoriesSlice';
 import { logoutUserThunk } from '../../store/authSlice';
 import styles from './Header.module.scss';
+
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -42,11 +45,13 @@ const Header = () => {
             <div className={styles['header-nav']}>
                 <div className={styles['logo-border']}>
                     <div className={styles.logo}>
-                        <div>
+                        <div className={styles['logo-link']}>
                             <NavLink to='/'><img src="/logo.svg" alt="logo" /></NavLink>
                             <NavLink to='/'>Ecobazar</NavLink> 
                         </div>
-                        <NavLink to='/cart'>Cart</NavLink>
+                        <div>
+                            <NavLink to='/cart'><Icon size={1} path={mdiPurseOutline} /></NavLink>
+                        </div>
                     </div>
                 </div>
                 <div className={styles['nav-border']}>

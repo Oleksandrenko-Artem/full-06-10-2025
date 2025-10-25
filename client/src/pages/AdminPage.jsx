@@ -5,7 +5,7 @@ import styles from './pages.module.scss';
 const AdminPage = () => {
     return (
         <div className={styles['page-padding']}>
-            <h1>Admin panel</h1>
+            <h2>Admin panel</h2>
             <ul>
                 <li><Link to="/admin-panel/categories">Categories</Link></li>
                 <li><Link to="/admin-panel/products">Products</Link></li>
