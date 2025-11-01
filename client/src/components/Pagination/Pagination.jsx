@@ -26,11 +26,14 @@ const Pagination = (props) => {
             <span onClick={handlePrev} className={styles.arrow}><Icon size={1.5} path={mdiChevronLeft} /></span>
             <span className={styles.page}>{page}</span>
             <span onClick={handleNext} className={styles.arrow}><Icon size={1.5} path={mdiChevronRight} /></span>
-            <select value={amount} onChange={handleChange}>
-                {
-                    CONSTANTS.ORDER_AMOUNT.map(showOption)
-                }
-            </select>
+            <div className={styles['select-amount']}>
+                <span className={styles.amount}>Amount</span>
+                <select value={amount} onChange={handleChange}>
+                    {
+                        CONSTANTS.ORDER_AMOUNT.map(showOption)
+                    }
+                </select>
+            </div>
         </div>
     );
 };

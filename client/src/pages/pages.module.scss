@@ -35,6 +35,11 @@
     .orders-list {
         padding: 20px 0;
     }
+    .paginate {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
 }
 .admin {
     h2 {

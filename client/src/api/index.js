@@ -25,8 +25,16 @@ export const updateCategory = (id, values) => apiClient.patch(`/categories/${id}
 export const deleteCategory = (id) => apiClient.delete(`/categories/${id}`);
 // products
 export const searchProducts = (params) => apiClient.get(`products/search?q=${params}`);
-export const getAllProducts = () => apiClient.get('/products');
+export const getSaleProducts = () => apiClient.get('/products/sale');
+export const getAllProducts = (values) => {
+    const query = queryString.stringify(values);
+    return apiClient.get(`/products?${query}`);
+};
 export const getOneProductById = (id) => apiClient.get(`/products/${id}`);
+export const getProductsAmount = (values) => {
+    const query = queryString.stringify(values);
+    return apiClient.get(`/products/countAllProducts?${query}`);
+};
 export const createProduct = (values) => apiClient.post('/products', values);
 export const updateProduct = (id, values) => apiClient.patch(`/products/${id}`, values);
 export const deleteProduct = (id) => apiClient.delete(`/products/${id}`);

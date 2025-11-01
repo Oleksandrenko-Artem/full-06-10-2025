@@ -11,12 +11,12 @@ const Cart = () => {
     const { items } = useSelector((state) => state.cart);
     const { error } = useSelector((state) => state.orders);
     const total = items?.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    const showItem = (item) => <CartItem key={item._id} item={item} />
+    const showItem = (item) => <CartItem key={item._id} item={item} total={total} />
     const handleClear = () => {
         dispatch(clearCart());
     };
     return (
-        <section>
+        <section className={styles.wrapper}>
             {error && <h3>{error}</h3>}
             <div className={styles.cart}>
                 <div className={styles['products-cart']}>
@@ -28,6 +28,7 @@ const Cart = () => {
                                 <p>Price</p>
                                 <p>Quantity</p>
                                 <p>Subtotal</p>
+                                <p>Total</p>
                             </div>  
                         </li>
                         {
@@ -38,22 +39,6 @@ const Cart = () => {
                         <span>{items?.length > 0 && <NavLink to="/">Return to shop</NavLink>}</span>
                         <span>{items?.length > 0 && <button onClick={handleClear}>Clear cart</button>}</span>
                     </div>
-                </div>
-                <div className={styles['cart-total']}>
-                    <p>Cart Total</p>
-                    <ul>
-                        <li>Subtotal: </li>
-                        <li>${total.toFixed(2)}</li>
-                    </ul>
-                    <ul>
-                        <li>Shipping: </li>
-                        <li>free</li>
-                    </ul>
-                    <ul className={styles['total-last']}>
-                        <li>Total: </li>
-                        <li><b>${total.toFixed(2)}</b></li>
-                    </ul>
-                    <button>Proceed to checkout</button>
                 </div>
             </div>
             {items.length > 0 && <CartDelivery items={items} />}

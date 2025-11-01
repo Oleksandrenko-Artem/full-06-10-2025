@@ -1,20 +1,53 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProductsThunk } from '../store/productsSlice';
+import { getAllProductsThunk, getProductsAmountThunk } from '../store/productsSlice';
 import ProductsList from '../components/ProductsList/ProductsList';
+import Pagination from '../components/Pagination/Pagination';
+import CONSTANTS from '../constants';
 import styles from './pages.module.scss';
+import FiltersPanel from '../components/FiltersPanel/FiltersPanel';
 
 const HomePage = () => {
     const dispatch = useDispatch();
-    const { products, error, isLoading } = useSelector((state) => state.products);
+    const { products, totalProducts, error, isLoading } = useSelector((state) => state.products);
+    const [page, setPage] = useState(1);
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(1000);
+    const [category, setCategory] = useState('');
+    const [inStock, setInStock] = useState(false);
+    const [inSale, setInSale] = useState(false);
+    const [amount, setAmount] = useState(CONSTANTS.ORDER_AMOUNT[0]);
     useEffect(() => {
-        dispatch(getAllProductsThunk());
-    }, [dispatch]);
+        const values = {};
+        if (minPrice || maxPrice) {
+            if (minPrice) {
+                values.minPrice = minPrice;
+            }
+            if (maxPrice) {
+                values.maxPrice = maxPrice;
+            }
+        }
+        if (category) {
+            values.category = category;
+        }
+        if (inStock) {
+            values.availability = inStock;
+        }
+        if (inSale) {
+            values.sale = inSale;
+        }
+        dispatch(getProductsAmountThunk(values));
+        dispatch(getAllProductsThunk({ ...values, page, amount }));
+    }, [dispatch, page, amount, minPrice, maxPrice, category, inStock, inSale]);
     return (
         <div className={styles['page-padding']}>
             <h2>Home</h2>
             {error && <p>{error}</p>}
             {isLoading && <p>Loading...</p>}
+            <FiltersPanel setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setCategory={setCategory} setInStock={setInStock} setInSale={setInSale} minPrice={minPrice} maxPrice={maxPrice} category={category} inStock={inStock} inSale={inSale} />
+            <div className={styles.paginate}>
+                <Pagination page={page} setPage={setPage} total={totalProducts} amount={amount} setAmount={setAmount} />
+            </div>
             <ProductsList products={products} />
         </div>
     );

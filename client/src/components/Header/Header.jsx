@@ -86,6 +86,9 @@ const Header = () => {
                             <li>
                                 <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : undefined)}>Home</NavLink>
                             </li>
+                            <li>
+                                <NavLink to="/products/sale" className={({ isActive }) => (isActive ? styles.active : undefined)}>Sale</NavLink>
+                            </li>
                             {categories?.map(showCategory)}
                         </ul>
                     </nav> 

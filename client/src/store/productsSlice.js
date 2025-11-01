@@ -1,6 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllProducts, createProduct, updateProduct, deleteProduct, searchProducts, getOneProductById } from '../api';
+import { getAllProducts, createProduct, updateProduct, deleteProduct, searchProducts, getOneProductById, getSaleProducts, getProductsAmount } from '../api';
 import { pendingCase, rejectedCase } from "./functions";
+
+export const getProductsAmountThunk = createAsyncThunk('products/getProductsAmountThunk', async (values, thunkAPI) => {
+    try {
+        const response = await getProductsAmount(values);
+        return response.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error?.message);
+    }
+});
+
+export const getSaleProductsThunk = createAsyncThunk('products/getSaleProductsThunk', async (_, thunkAPI) => {
+    try {
+        const response = await getSaleProducts();
+        return response.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error?.message);
+    }
+});
 
 export const searchProductsThunk = createAsyncThunk('products/searchProductsThunk', async (params, thunkAPI) => {
     try {
@@ -22,7 +40,7 @@ export const getOneProductByIdThunk = createAsyncThunk('products/getOneProductBy
 
 export const getAllProductsThunk = createAsyncThunk('products/getAllProducts', async (values, thunkAPI) => {
     try {
-        const response = await getAllProducts();
+        const response = await getAllProducts(values);
         return response.data.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error?.message);
@@ -60,6 +78,7 @@ const productsSlice = createSlice({
     name: 'products',
     initialState: {
         products: [],
+        totalProducts: 0,
         error: null,
         isLoading: false,
         selectedProduct: null,
@@ -72,6 +91,8 @@ const productsSlice = createSlice({
         builder.addCase(deleteProductThunk.pending, pendingCase);
         builder.addCase(searchProductsThunk.pending, pendingCase);
         builder.addCase(getOneProductByIdThunk.pending, pendingCase);
+        builder.addCase(getSaleProductsThunk.pending, pendingCase);
+        builder.addCase(getProductsAmountThunk.pending, pendingCase);
         builder.addCase(getAllProductsThunk.fulfilled, (state, action) => {
             state.products = action.payload;
             state.error = null;
@@ -105,12 +126,24 @@ const productsSlice = createSlice({
             state.error = null;
             state.isLoading = false;
         });
+        builder.addCase(getSaleProductsThunk.fulfilled, (state, action) => {
+            state.products = action.payload;
+            state.error = null;
+            state.isLoading = false;
+        });
+        builder.addCase(getProductsAmountThunk.fulfilled, (state, action) => {
+            state.totalProducts = action.payload;
+            state.error = null;
+            state.isLoading = false;
+        });
         builder.addCase(getAllProductsThunk.rejected, rejectedCase);
         builder.addCase(createProductThunk.rejected, rejectedCase);
         builder.addCase(updateProductThunk.rejected, rejectedCase);
         builder.addCase(deleteProductThunk.rejected, rejectedCase);
         builder.addCase(searchProductsThunk.rejected, rejectedCase);
         builder.addCase(getOneProductByIdThunk.rejected, rejectedCase);
+        builder.addCase(getSaleProductsThunk.rejected, rejectedCase);
+        builder.addCase(getProductsAmountThunk.rejected, rejectedCase);
     },
 });
 

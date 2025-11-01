@@ -5,7 +5,7 @@ const upload = require('../middlewares/upload.mw');
 const { paginate } = require('../middlewares/pagination.mw');
 const { filterProducts } = require('../middlewares/filter.mw');
 const { createProductSchema, updateProductSchema } = require('../validators/product.validator');
-const { createProduct, getAllProducts, searchProducts, getProductById, updateProductById, deleteProductById } = require('../controllers/product.controller');
+const { createProduct, getAllProducts, searchProducts, getSaleProducts, getProductById, updateProductById, deleteProductById, countAllProducts } = require('../controllers/product.controller');
 const CONSTANTS = require('../constants');
 
 const router = express.Router();
@@ -13,6 +13,8 @@ const router = express.Router();
 router.post('/', auth, isAdmin, upload.array('images', CONSTANTS.MAX_LIMIT_IMG), validate(createProductSchema), createProduct);
 router.get('/', filterProducts, paginate, getAllProducts);
 router.get('/search', searchProducts);
+router.get('/sale', getSaleProducts);
+router.get('/countAllProducts', filterProducts, countAllProducts);
 router.get('/:idProduct', getProductById);
 router.patch('/:idProduct', auth, isAdmin, upload.array('images', CONSTANTS.MAX_LIMIT_IMG), validate(updateProductSchema), updateProductById);
 router.delete('/:idProduct', auth, isAdmin, deleteProductById);

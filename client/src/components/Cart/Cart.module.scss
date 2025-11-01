@@ -2,8 +2,13 @@
 @use '/src/common/styles/widths' as *;
 @use '/src/common/styles/mixins' as *;
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
 .cart{
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
 section>div>div {
@@ -37,43 +42,6 @@ section>div>div {
         button:hover, a:hover {
             background-color: $grey200;
         }
-}
-.cart-total {
-    width: 424px;
-    height: 296px;
-    padding: 10px 20px 10px 20px;
-    p {
-        padding-left: 12px;
-        font-size: 20px;
-    }
-    ul{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 12px;
-        border-bottom: 1px solid $grey100;
-        li {
-            text-transform: capitalize;
-        }
-    }
-    .total-last {
-        font-size: 18px;
-        border: none;
-    }
-    button {
-        width: 100%;
-        @include btn(
-            $white,
-            $buttonPadding,
-            $primary,
-            $buttonFontSize,
-            $buttonFontWeight,
-            $buttonBorderRadius
-            );
-        &:hover {
-            background-color: $softPrimary;
-        }
-    }
 }
 .cart-item {
     display: flex;

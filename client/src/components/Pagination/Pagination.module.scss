@@ -1,10 +1,35 @@
 @use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/mixins' as *;
 
 .wrapper {
     display: flex;
     align-items: center;
     gap: 10px;
     border: none;
+    div {
+        display: flex;
+        gap: 10px;
+        select {
+            @include input-text-btn(
+                $inputHeight,
+                100px,
+                $inputBorder,
+                $buttonFontSize,
+                $buttonPadding 
+                );
+                color: $grey500;
+                padding: 0;
+                margin: 0;
+                width: 50px;
+                text-align: center;
+            }
+    }
+}
+.select-amount {
+    display: inherit;
+    align-items: center;
+    gap: 10px;
 }
 .arrow {
     width: 40px;

@@ -8,7 +8,7 @@ import CONSTANTS from '../../constants';
 
 const CartItem = (props) => {
     const dispatch = useDispatch();
-    const { item } = props;
+    const { item, total } = props;
     const handleDecrement = () => {
         dispatch(decrementQuantity(item._id));
     };
@@ -31,6 +31,7 @@ const CartItem = (props) => {
                 <button onClick={handleIncrement}>+</button>
             </div>
             <p>${(item.price * item.quantity).toFixed(2)}</p>
+            <p>{total}</p>
             <Icon size={1} path={mdiCloseCircleOutline} onClick={handleDelete} />
         </li>
     );

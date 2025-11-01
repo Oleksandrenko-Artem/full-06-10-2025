@@ -19,6 +19,7 @@ import AdminOrders from './components/Admin/AdminOrders';
 import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
 import ProfilePage from './pages/ProfilePage';
+import SalePage from './pages/SalePage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const App = () => {
           <Route path='/account' element={<ProfilePage />} />
           <Route path='/cart' element={<CartPage />} />
           <Route path='/products/search' element={<SearchResults />} />
+          <Route path='/products/sale' element={<SalePage />} />
           <Route path='/success/:idOrder' element={<SuccessPage />} />
           <Route path='/cancel/:idOrder' element={<CancelPage />} />
           <Route path='/products/:idProduct' element={<ProductPage />} />

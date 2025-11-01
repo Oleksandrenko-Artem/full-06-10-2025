@@ -4,6 +4,24 @@ const createError = require('http-errors');
 const Product = require('../models/Product');
 const CONSTANTS = require('../constants');
 
+module.exports.countAllProducts = async (req, res, next) => {
+    try {
+        const productsAmount = await Product.countDocuments(req.filter);
+        res.status(200).send({ data: productsAmount });
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports.getSaleProducts = async (req, res, next) => {
+    try {
+        const products = await Product.find({ isSale: true }).populate({ path: 'category', select: 'name' });
+        res.status(200).send({ data: products });
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports.searchProducts = async (req, res, next) => {
     try {
         const { q } = req.query;
