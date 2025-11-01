@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { createCategoryThunk, updateCategoryThunk } from '../../store/categoriesSlice';
+import styles from './Admin.module.scss';
 
 const AdminCategoriesForm = (props) => {
     const { cancelForm, selectedCategory } = props;
@@ -17,7 +18,7 @@ const AdminCategoriesForm = (props) => {
     return (
         <Formik initialValues={{name: selectedCategory?.name || ''}} onSubmit={onSubmit}>
             {() => {
-                return <Form>
+                return <Form className={styles.form}>
                     <label>
                         <Field name="name" type="text" placeholder="Name" />
                         <ErrorMessage name="name" />

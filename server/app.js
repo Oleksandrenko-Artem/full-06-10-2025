@@ -5,6 +5,7 @@ const userRouter = require('./routes/user.routes');
 const categoryRouter = require('./routes/category.routes');
 const productRouter = require('./routes/product.routes');
 const orderRouter = require('./routes/order.routes');
+const adminRouter = require('./routes/admin.routes');
 const errorHandler = require('./errorHandler');
 const CONSTANTS = require('./constants');
 
@@ -18,6 +19,7 @@ app.use('/users', userRouter);
 app.use('/categories', categoryRouter);
 app.use('/products', productRouter);
 app.use('/orders', orderRouter);
+app.use('/admin', adminRouter);
 
 app.use(errorHandler);
 

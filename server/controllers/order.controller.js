@@ -1,6 +1,41 @@
 const createError = require('http-errors');
 const Product = require('../models/Product');
 const Order = require('../models/Order');
+const CONSTANTS = require('../constants');
+const stripe = require('stripe')(CONSTANTS.STRIPE_SECRET_KEY);
+
+module.exports.countAllOrders = async (req, res, next) => {
+    try {
+        const ordersAmount = await Order.countDocuments();
+        res.status(200).send({ data: ordersAmount });
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports.createCheckoutSession = async (req, res, next) => {
+    try {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: req.body.products.map((product) => ({
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: product.title,
+                    },
+                    unit_amount: Math.round(product.productPrice * 100),
+                },
+                quantity: product.quantity,
+            })),
+            mode: 'payment',
+            success_url: `${CONSTANTS.CLIENT_URL}/success/${req.body.id}`,
+            cancel_url: `${CONSTANTS.CLIENT_URL}/cancel/${req.body.id}`,
+        });
+        res.status(200).send({ id: session.id });
+    } catch (error) {
+        next(error);
+    }
+};
 
 module.exports.createOrder = async (req, res, next) => {
     try {
@@ -13,7 +48,7 @@ module.exports.createOrder = async (req, res, next) => {
                     throw createError(404, 'Product not found');
                 }
                 if (product.stockQty < quantity) {
-                    throw createError(409, 'Not enough in stock ' + product.title);
+                    throw createError(409, 'Not enough in stock ' + product.title + ', available: ' + product.stockQty);
                 }
                 product.stockQty -= quantity;
                 await product.save();
@@ -43,7 +78,7 @@ module.exports.createOrder = async (req, res, next) => {
 module.exports.getAllOrders = async (req, res, next) => {
     try {
         const { limit, skip } = req.pagination;
-        const orders = await Order.find(req.filter).populate('user', 'email name').populate('products.productId', 'title').skip(skip).limit(limit);
+        const orders = await Order.find(req.filter).sort({createdAt: -1}).populate('user', 'email name').populate('products.productId', 'title').skip(skip).limit(limit);
         res.status(200).send({ data: orders });
     } catch (error) {
         next(error);
@@ -53,7 +88,7 @@ module.exports.getAllOrders = async (req, res, next) => {
 module.exports.getAccountOrders = async (req, res, next) => {
     try {
         const { limit, skip } = req.pagination;
-        const orders = await Order.find({ user: req.user._id }).populate('products.productId', 'title').skip(skip).limit(limit);
+        const orders = await Order.find({ user: req.user._id }).sort({createdAt: -1}).populate('products.productId', 'title').skip(skip).limit(limit);
         res.status(200).send({ data: orders });
     } catch (error) {
         next(error);
@@ -87,6 +122,8 @@ module.exports.updateStatusOrder = async (req, res, next) => {
         }
         order.status = status;
         await order.save();
+        await order.populate('user', 'email name');
+        await order.populate('products.productId', 'title');
         res.status(200).send({ data: order });
     } catch (error) {
         next(error);

@@ -1,6 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { registerUser, loginUser, getAccount } from '../api';
+import { registerUser, loginUser, getAccount, updateUser } from '../api';
 import { pendingCase, rejectedCase } from './functions';
+
+export const updateUserThunk = createAsyncThunk('auth/updateUserThunk', async ({id, values}, thunkAPI) => {
+    try {
+        const response = await updateUser(id, values);
+        return response.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error?.message);
+    }
+});
 
 export const logoutUserThunk = createAsyncThunk('auth/logoutUserThunk', async () => {
     localStorage.removeItem('token');
@@ -56,6 +65,7 @@ const authSlice = createSlice({
         builder.addCase(getAccountThunk.pending, pendingCase);
         builder.addCase(loginUserThunk.pending, pendingCase);
         builder.addCase(registerUserThunk.pending, pendingCase);
+        builder.addCase(updateUserThunk.pending, pendingCase);
         builder.addCase(logoutUserThunk.fulfilled, (state) => {
             state.user = null;
             state.error = null;
@@ -64,9 +74,11 @@ const authSlice = createSlice({
         builder.addCase(getAccountThunk.fulfilled, fulfilledCase);
         builder.addCase(loginUserThunk.fulfilled, fulfilledCase);
         builder.addCase(registerUserThunk.fulfilled, fulfilledCase);
+        builder.addCase(updateUserThunk.fulfilled, fulfilledCase);
         builder.addCase(getAccountThunk.rejected, rejectedCase);
         builder.addCase(loginUserThunk.rejected, rejectedCase);
         builder.addCase(registerUserThunk.rejected, rejectedCase);
+        builder.addCase(updateUserThunk.rejected, rejectedCase);
     },
 });
 

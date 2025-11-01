@@ -1,6 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllProducts, createProduct, updateProduct, deleteProduct } from '../api';
+import { getAllProducts, createProduct, updateProduct, deleteProduct, searchProducts, getOneProductById } from '../api';
 import { pendingCase, rejectedCase } from "./functions";
+
+export const searchProductsThunk = createAsyncThunk('products/searchProductsThunk', async (params, thunkAPI) => {
+    try {
+        const response = await searchProducts(params);
+        return response.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error?.message);
+    }
+});
+
+export const getOneProductByIdThunk = createAsyncThunk('products/getOneProductByIdThunk', async (id, thunkAPI) => {
+    try {
+        const response = await getOneProductById(id);
+        return response.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error?.message);
+    }
+});
 
 export const getAllProductsThunk = createAsyncThunk('products/getAllProducts', async (values, thunkAPI) => {
     try {
@@ -44,6 +62,7 @@ const productsSlice = createSlice({
         products: [],
         error: null,
         isLoading: false,
+        selectedProduct: null,
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -51,6 +70,8 @@ const productsSlice = createSlice({
         builder.addCase(createProductThunk.pending, pendingCase);
         builder.addCase(updateProductThunk.pending, pendingCase);
         builder.addCase(deleteProductThunk.pending, pendingCase);
+        builder.addCase(searchProductsThunk.pending, pendingCase);
+        builder.addCase(getOneProductByIdThunk.pending, pendingCase);
         builder.addCase(getAllProductsThunk.fulfilled, (state, action) => {
             state.products = action.payload;
             state.error = null;
@@ -74,10 +95,22 @@ const productsSlice = createSlice({
             state.error = null;
             state.isLoading = false;
         });
+        builder.addCase(searchProductsThunk.fulfilled, (state, action) => {
+            state.products = action.payload;
+            state.error = null;
+            state.isLoading = false;
+        });
+        builder.addCase(getOneProductByIdThunk.fulfilled, (state, action) => {
+            state.selectedProduct = action.payload;
+            state.error = null;
+            state.isLoading = false;
+        });
         builder.addCase(getAllProductsThunk.rejected, rejectedCase);
         builder.addCase(createProductThunk.rejected, rejectedCase);
         builder.addCase(updateProductThunk.rejected, rejectedCase);
         builder.addCase(deleteProductThunk.rejected, rejectedCase);
+        builder.addCase(searchProductsThunk.rejected, rejectedCase);
+        builder.addCase(getOneProductByIdThunk.rejected, rejectedCase);
     },
 });
 

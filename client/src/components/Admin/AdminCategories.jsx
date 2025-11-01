@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategoriesThunk } from './../../store/categoriesSlice';
 import AdminCategoriesForm from './AdminCategoriesForm';
 import AdminCategoryRow from './AdminCategoryRow';
+import styles from './Admin.module.scss';
 
 const AdminCategories = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -27,22 +28,28 @@ const AdminCategories = () => {
     };
     const showCategory = (category) => <AdminCategoryRow key={category._id} category={category} handleUpdate={handleUpdate} />;
     return (
-        <section>
+        <section className={styles['admin-table']}>
             {error && error.includes('409') && <p>Error: Category has products</p>}
             <h2>Categories</h2>
-            <table>
+            <table className={styles['table-categories']}>
                 <thead>
-                    <tr>
-                        <th>title</th>
-                        <th>update</th>
-                        <th>delete</th>
-                    </tr>
+                    {categories.length === 0 ? (
+                    <tr><th>No categories found</th></tr>
+                    ) : (
+                        <tr>
+                            <th>title</th>
+                            <th>update</th>
+                            <th>delete</th>
+                        </tr>
+                    )}
                 </thead>
                 <tbody>
                     {categories?.map(showCategory)}
                 </tbody>
             </table>
-            <button onClick={handleCreate}>Create new category</button>
+            <div>
+                <button onClick={handleCreate}>Create new category</button>
+            </div>
             {isCreating && <AdminCategoriesForm cancelForm={cancelForm} selectedCategory={selectedCategory} />}
         </section>
     );

@@ -4,6 +4,19 @@ const createError = require('http-errors');
 const Product = require('../models/Product');
 const CONSTANTS = require('../constants');
 
+module.exports.searchProducts = async (req, res, next) => {
+    try {
+        const { q } = req.query;
+        if (!q) {
+            return res.status(200).send({ data: [] });
+        }
+        const products = await Product.find({ title: { $regex: q, $options: 'i' } });
+        res.status(200).send({ data: products });
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports.createProduct = async (req, res, next) => {
     try {
         const images = req.files?.map(item => item.filename) || [];

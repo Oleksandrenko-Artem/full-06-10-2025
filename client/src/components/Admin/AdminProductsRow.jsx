@@ -12,7 +12,7 @@ const AdminProductsRow = (props) => {
     const handleDelete = (id) => {
         dispatch(deleteProductThunk(id));
     };
-    const showImages = (img, i) => <img key={i} style={{width: '30px'}} src={`${CONSTANTS.BASE_URL}/${CONSTANTS.UPLOAD_FOLDER}/${img}`} alt={title} />
+    const showImages = (img, i) => <img key={i} src={`${CONSTANTS.BASE_URL}/${CONSTANTS.UPLOAD_FOLDER}/${img}`} alt={title} />
     return (
         <tr>
             <td>{title}</td>
@@ -21,7 +21,7 @@ const AdminProductsRow = (props) => {
             <td>{stockQty}</td>
             <td>{category?.name}</td>
             <td>{isSale ? 'yes' : 'no'}</td>
-            <td>{images?.map(showImages)}</td>
+            <td>{images.length !== 0 ? images?.map(showImages) : "Product hasn't picture"}</td>
             <td><Icon onClick={() => { handleUpdate(product) }} size={1} path={mdiUpdate} /></td>
             <td><Icon onClick={() => { handleDelete(_id) }} size={1} path={mdiDelete} /></td>
         </tr>

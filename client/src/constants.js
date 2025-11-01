@@ -4,6 +4,8 @@ const CONSTANTS = {
     SHIPPING_METHOD: ['free', 'nova post', 'ukr post'],
     SHIPPING_PRICE: { 'free': 0, 'nova post': 80, 'ukr post': 50 },
     ORDER_STATUS: ['new', 'paid', 'confirm', 'shipped', 'delivered', 'canceled'],
+    ORDER_AMOUNT: [2, 5, 10, 15],
+    STRIPE_SECRET_KEY: 'pk_test_51SMEI6B9Ot52JxeHyNDCmVVvxpcg0AOssm4u3D4v40h8TM9HJLAZ60w8O9nnluQZow6hw0w5JrTp1408MHdheI2Z00oGNr7U3f',
 };
 
 export default CONSTANTS;

@@ -1,7 +1,56 @@
+@use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/mixins' as *;
+
 .page-padding {
-    padding: 0 50px 0 50px;
+    padding: 0 50px 20px 50px;
     h2 {
         text-align: center;
         text-transform: capitalize;
+    }
+    .image, .link-home {
+        display: flex;
+        justify-content: center;
+        padding: 12px;
+    }
+    .link-home, .personal-info {
+        button { 
+            @include btn(
+            $white,
+            $buttonPadding,
+            $primary,
+            $buttonFontSize,
+            $buttonFontWeight,
+            $buttonBorderRadius 
+            );
+            &:hover {
+                background-color: $softPrimary;
+            }
+        }
+    }
+    .link-shop {
+        display: flex;
+        justify-content: center;
+    }
+    .orders-list {
+        padding: 20px 0;
+    }
+}
+.admin {
+    h2 {
+        text-align: center;
+        text-transform: capitalize;
+    }
+    ul {
+        padding: 0 50px 0 50px;
+    }
+    .admin-links {
+        display: flex;
+        gap: 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid $grey100;
+    }
+    .active {
+        color: $primary;
     }
 }

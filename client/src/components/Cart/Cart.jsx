@@ -9,6 +9,7 @@ import styles from './Cart.module.scss';
 const Cart = () => {
     const dispatch = useDispatch();
     const { items } = useSelector((state) => state.cart);
+    const { error } = useSelector((state) => state.orders);
     const total = items?.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const showItem = (item) => <CartItem key={item._id} item={item} />
     const handleClear = () => {
@@ -16,6 +17,7 @@ const Cart = () => {
     };
     return (
         <section>
+            {error && <h3>{error}</h3>}
             <div className={styles.cart}>
                 <div className={styles['products-cart']}>
                     {items?.length === 0 && <p>Empty cart</p>}

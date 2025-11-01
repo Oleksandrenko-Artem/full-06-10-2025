@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProductsThunk } from './../../store/productsSlice';
 import AdminProductsRow from './AdminProductsRow';
 import AdminProductsForm from './AdminProductsForm';
+import styles from './Admin.module.scss';
 
 const AdminProducts = () => {
     const dispatch = useDispatch();
@@ -27,22 +28,26 @@ const AdminProducts = () => {
     };
     const showProduct = (product) => (<AdminProductsRow key={product._id} product={product} handleUpdate={handleUpdate} />);
     return (
-        <section>
+        <section className={styles['admin-table']}>
             {error && <p>{error}</p>}
             <h2>Products</h2>
-            <table>
+            <table className={styles['table-products']}>
                 <thead>
-                    <tr>
-                        <th>title</th>
-                        <th>description</th>
-                        <th>price</th>
-                        <th>stockQty</th>
-                        <th>category</th>
-                        <th>isSale</th>
-                        <th>images</th>
-                        <th>update</th>
-                        <th>delete</th>
-                    </tr>
+                    {products.length === 0 ? (
+                        <tr><th>Products not found</th></tr>
+                    ) : (
+                        <tr>
+                            <th>title</th>
+                            <th>description</th>
+                            <th>price</th>
+                            <th>stockQty</th>
+                            <th>category</th>
+                            <th>isSale</th>
+                            <th>images</th>
+                            <th>update</th>
+                            <th>delete</th>
+                        </tr>
+                    )}
                 </thead>
                 <tbody>
                     {products?.map(showProduct)}

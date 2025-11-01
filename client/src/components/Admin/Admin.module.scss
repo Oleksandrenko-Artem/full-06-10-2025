@@ -46,11 +46,108 @@
         }
     }
     button {
+        @include btn(
+            $white,
+            $buttonPadding,
+            $primary,
+            $buttonFontSize,
+            $buttonFontWeight,
+            $buttonBorderRadius
+            );
+        &:hover {
+            background-color: $softPrimary;
+        }
+    }
+}
+.admin-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid $grey100;
+    margin: 10px 60px 10px 60px;
+    padding: 10px;
+    border-radius: 8px;
+    text-transform: capitalize;
+    table {
+        border: 1px solid $grey300;
+    }
+    th {
+        padding: 10px;
+        border: 1px solid $grey200;
+    }
+    td {
+        text-align: center;
+        padding: 10px;
+        border: 1px solid $grey100;
+        img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-top: 10px;
+        }
+        svg {
+            cursor: pointer;
+            margin-top: 10px;
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+    select {
+        @include input-text-btn(
+            $inputHeight,
+            100px,
+            $inputBorder,
+            $buttonFontSize,
+            $buttonPadding 
+            );
+            color: $grey500;
+            padding: 0 0 0 12px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+    button {
         @include btn($white,
-                $buttonPadding,
-                $primary,
-                $buttonFontSize,
-                $buttonFontWeight,
-                $buttonBorderRadius);
+            10px,
+            $primary,
+            $buttonFontSize,
+            $buttonFontWeight,
+            $buttonBorderRadius
+            );
+        width: 100%;
+        &:hover {
+            background-color: $softPrimary;
+        }
+    }
+    .order-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .table-products, .table-orders, .table-categories, .table-stats {
+        width: 100%;
+    }
+    .table-orders {
+        .product-table {
+            margin: auto;
+            width: 100%;
+        }
+        tbody {
+            padding: 30px;
+        }
+    }
+}
+.product-info {
+    margin: auto;
+    td {
+        width: 100%;
+    }
+    .product-title {
+        width: 35%;
+    }
+    .product-price {
+        width: 10%;
     }
 }

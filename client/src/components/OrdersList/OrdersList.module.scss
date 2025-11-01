@@ -1,0 +1,72 @@
+@use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/mixins' as *;
+
+.order-info {
+    padding: 20px;
+    background-color: $grey50;
+    button {
+        @include btn(
+            $white,
+            10px,
+            $primary,
+            $buttonFontSize,
+            $buttonFontWeight,
+            $buttonBorderRadius 
+            );
+            width: 20%;
+            &:hover {
+                background-color: $softPrimary;
+            }
+        }
+}
+.order-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid $grey100;
+    margin: auto;
+    padding: 10px;
+    border-radius: 8px;
+    text-transform: capitalize;
+    table {
+        border: 1px solid $grey400;
+    }
+    thead, tbody {
+        width: 100%;
+        border: 1px solid $grey300;
+    }
+    th {
+        width: 13%;
+        padding: 10px 46.4px;
+        border: 1px solid $grey200;
+    }
+    td {
+        width: 19%;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid $grey100;
+    }
+    button {
+        @include btn(
+            $white,
+            10px,
+            $primary,
+            $buttonFontSize,
+            $buttonFontWeight,
+            $buttonBorderRadius
+            );
+        width: 100%;
+        &:hover {
+            background-color: $softPrimary;
+        }
+    }
+    .products {
+        width: 100%;
+        td {
+            width: 5%;
+        }
+    }
+}

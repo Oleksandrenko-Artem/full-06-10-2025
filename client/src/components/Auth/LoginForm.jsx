@@ -22,7 +22,7 @@ const LoginForm = () => {
             {() => (
                 <Form className={styles.form}>
                     <h2>Sign in</h2>
-                    {error && error.includes('401') && <p>Invalid data</p>}
+                    {error && error.includes('401') && <p>Unauthorized</p>}
                     <label>
                         <Field name="email" type="email" placeholder="Email" />
                         <ErrorMessage name="email" component="div" className={styles.error} />

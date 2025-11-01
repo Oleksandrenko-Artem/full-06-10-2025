@@ -34,6 +34,9 @@ section>div>div {
             $buttonFontWeight,
             $buttonBorderRadius);
         }
+        button:hover, a:hover {
+            background-color: $grey200;
+        }
 }
 .cart-total {
     width: 424px;
@@ -59,12 +62,17 @@ section>div>div {
     }
     button {
         width: 100%;
-        @include btn($white,
+        @include btn(
+            $white,
             $buttonPadding,
             $primary,
             $buttonFontSize,
             $buttonFontWeight,
-            $buttonBorderRadius);
+            $buttonBorderRadius
+            );
+        &:hover {
+            background-color: $softPrimary;
+        }
     }
 }
 .cart-item {
@@ -143,6 +151,10 @@ section>div>div {
             $primary,
             $buttonFontSize,
             $buttonFontWeight,
-            $buttonBorderRadius);
+            $buttonBorderRadius
+            );
+        &:hover {
+            background-color: $softPrimary;
+        }
     }
 }

@@ -72,7 +72,7 @@ const AdminProductsForm = (props) => {
                         <input name="images" type="file" multiple onChange={(event) => { setFieldValue('images', Array.from(event.target.files)) }} />
                         <ErrorMessage name="images" />
                     </label>
-                    <button type='submit'>Create</button>
+                    <button type='submit'>{selectedProduct ? 'Update' : 'Create'}</button>
                 </Form>
             }}
         </Formik>

@@ -1,6 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllCategories, createCategory, updateCategory, deleteCategory } from '../api';
+import { getAllCategories, createCategory, updateCategory, deleteCategory, getOneCategoryById } from '../api';
 import { pendingCase, rejectedCase } from './functions';
+
+export const getOneCategoryByIdThunk = createAsyncThunk('categories/getOneCategoryByIdThunk', async (id, thunkAPI) => {
+    try {
+        const response = await getOneCategoryById(id);
+        return response.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error?.message);
+    }
+});
 
 export const getAllCategoriesThunk = createAsyncThunk('categories/getAllCategoriesThunk', async (_, thunkAPI) => {
     try {
@@ -44,6 +53,7 @@ const categoriesSlice = createSlice({
         categories: [],
         error: null,
         isLoading: false,
+        selectedCategory: null,
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -51,6 +61,7 @@ const categoriesSlice = createSlice({
         builder.addCase(createCategoryThunk.pending, pendingCase);
         builder.addCase(updateCategoryThunk.pending, pendingCase);
         builder.addCase(deleteCategoryThunk.pending, pendingCase);
+        builder.addCase(getOneCategoryByIdThunk.pending, pendingCase);
         builder.addCase(getAllCategoriesThunk.fulfilled, (state, action) => {
             state.categories = action.payload;
             state.error = null;
@@ -74,10 +85,16 @@ const categoriesSlice = createSlice({
             state.error = null;
             state.isLoading = false;
         });
+        builder.addCase(getOneCategoryByIdThunk.fulfilled, (state, action) => {
+            state.selectedCategory = action.payload;
+            state.error = null;
+            state.isLoading = false;
+        });
         builder.addCase(getAllCategoriesThunk.rejected, rejectedCase);
         builder.addCase(createCategoryThunk.rejected, rejectedCase);
         builder.addCase(updateCategoryThunk.rejected, rejectedCase);
         builder.addCase(deleteCategoryThunk.rejected, rejectedCase);
+        builder.addCase(getOneCategoryByIdThunk.rejected, rejectedCase);
     },
 });
 

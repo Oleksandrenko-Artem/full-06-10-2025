@@ -1,0 +1,60 @@
+@use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/mixins' as *;
+
+.product {
+    display: flex;
+    flex-wrap: wrap;
+    >div {
+        width: 50%;
+    }
+    .images {
+        display: flex;
+        justify-content: center;
+        svg {
+            color: $grey400;
+            margin: auto;
+        }
+    }
+}
+.info {
+    a {
+        color: $primary;
+        font-weight: 700;
+        font-size: 18px;
+    }
+    button {
+        @include btn(
+            $white,
+            $buttonPadding,
+            $primary,
+            $buttonFontSize,
+            $buttonFontWeight,
+            $buttonBorderRadius 
+            );
+        width: 50%;
+        &:hover {
+            background-color: $softPrimary;
+        }
+    }
+    .price {
+        font-size: 20px;
+    }
+}
+:global(.image-gallery-slide img){
+    height: 300px;
+    object-fit: contain;
+}
+:global(.image-gallery-thumbnail img) {
+    height: 40px;
+    object-fit: contain;
+}
+:global(.image-gallery-content.fullscreen .image-gallery-slide img) {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+:global(.image-gallery-content.fullscreen .image-gallery-thumbnail img) {
+    height: 80px;
+    object-fit: contain;
+}

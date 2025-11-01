@@ -11,24 +11,42 @@
     }
 }
 .product {
+    cursor: pointer;
     width: 312px;
     border: 1px solid $grey100;
     padding: 12px;
+    &:hover {
+        border: 1px solid $primary;
+    }
+    h4 {
+        color: $primary;
+    }
     div {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
+    a:hover {
+        color: $primary;
+    }
     .cart-img {
         position: relative;
         margin: 0;
+        &:hover {
+            color: $primary;
+        }
     }
 }
 .picture {
     width: 280px;
     height: 280px;
     background-color: $grey100;
+    margin-left: 3px;
+    svg {
+        color: $grey400;
+        margin-left: 20px;
+    }
     img {
         width: 100%;
         height: 100%;

@@ -7,6 +7,7 @@ const ProductsList = (props) => {
     const showProduct = (product) => <ProductItem key={product._id} product={product} />;
     return (
         <section className={styles.products}>
+            {products && products.length === 0 && <p>Products not found</p>}
             {products.map(showProduct)}
         </section>
     );

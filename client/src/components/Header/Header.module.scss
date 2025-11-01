@@ -1,4 +1,6 @@
 @use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/mixins' as *;
 
 .header-div {
     color: $grey300;
@@ -21,9 +23,71 @@
         width: 34px;
         margin-top: 15px;
     }
+    input {
+        @include input-text-btn($inputHeight, $inputWidthSecond, $inputBorder, $buttonFontSize, $buttonPadding);
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
     .logo-link {
         display: flex;
         align-items: center;
+        &:hover {
+            color: $primary;
+        }
+    }
+    .cart-link {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        &:hover {
+            color: $primary;
+        }
+        .items-length {
+            position: absolute;
+            top: 60px;
+            margin: 30px;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            color: $white;
+            border: 1px solid $hardPrimary;
+            border-radius: 40px;
+            background-color: $hardPrimary;
+            font-size: 16px;
+        }
+        svg {
+            margin-top: 14px;
+        }
+        div {
+            span {
+                position: absolute;
+                text-align: center;
+                font-size: 10px;
+                margin-top: 8px;
+            }
+            p {
+                font-size: 16px;
+                padding-top: 25px;
+                padding-bottom: 10px;
+            }
+        }
+    }
+    .search {
+        display: flex;
+        align-items: center;
+        div {
+            display: flex;
+            justify-content: center;
+            width: 80px;
+            height: $inputHeight;
+            background-color: $primary;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            svg {
+                cursor: pointer;
+                color: $white;
+            }
+        }
     }
 }
 .menu {
@@ -31,6 +95,9 @@
     flex-direction: row;
     padding: 16px 0 16px 0;
     gap: 20px;
+    .active {
+        color: $primary;
+    }
 }
 .sign {
     display: flex;
@@ -43,6 +110,7 @@
         font-weight: 400;
     }
     button {
+        cursor: pointer;
         color: $grey300;
         font-size: 16px;
         font-weight: 500;

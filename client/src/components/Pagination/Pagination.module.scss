@@ -1,0 +1,28 @@
+@use '/src/common/styles/colors' as *;
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+}
+.arrow {
+    width: 40px;
+    height: 40px;
+    color: $grey300;
+    background-color: $grey50;
+    border: 1px solid $grey50;
+    border-radius: 40px;
+}
+.page {
+    width: 40px;
+    height: 40px;
+    color: $white;
+    background-color: $primary;
+    border: 1px solid $primary;
+    border-radius: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 5px;
+    text-align: center;
+}
