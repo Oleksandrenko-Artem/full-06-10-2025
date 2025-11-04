@@ -32,7 +32,7 @@ const Product = (props) => {
                 <p>Category: <Link to={`/categories/${category?._id}`}>{category?.name}</Link></p>
                 <p>Description: {description}</p>
                 <p>In stock: {stockQty}</p>
-                <button onClick={handleAddToCart}>Add to cart</button>
+                {stockQty !== 0 && <button onClick={handleAddToCart}>Add to cart</button>}
             </div>
         </article>
     );

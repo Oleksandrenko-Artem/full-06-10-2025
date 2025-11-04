@@ -1,19 +1,28 @@
 @use '/src/common/styles/colors' as *;
 @use '/src/common/styles/widths' as *;
 @use '/src/common/styles/mixins' as *;
+@use '/src/common/styles/templates' as *;
+@use '/src/common/styles/breakpoints' as *;
 
 .product {
-    display: flex;
-    flex-wrap: wrap;
+    @include flex-wrap();
     >div {
-        width: 50%;
+        width: $elementWidthSecond;
     }
     .images {
-        display: flex;
-        justify-content: center;
+        @extend %flex-center;
+        padding-right: $imgPadding;
         svg {
             color: $grey400;
             margin: auto;
+        }
+    }
+    @media screen and (max-width: $l){
+        align-items: center;
+        flex-direction: column;
+        .images {
+            width: $elementWidth;
+            padding: $paddingZero;
         }
     }
 }
@@ -21,7 +30,7 @@
     a {
         color: $primary;
         font-weight: 700;
-        font-size: 18px;
+        font-size: $paragraphFont;
     }
     button {
         @include btn(
@@ -32,13 +41,18 @@
             $buttonFontWeight,
             $buttonBorderRadius 
             );
-        width: 50%;
+        width: $elementWidthSecond;
         &:hover {
             background-color: $softPrimary;
         }
     }
     .price {
-        font-size: 20px;
+        font-size: $spanMargin;
+    }
+    @media screen and (max-width: $l){
+        button {
+            width: $elementWidth;
+        }
     }
 }
 :global(.image-gallery-slide img){
@@ -46,15 +60,15 @@
     object-fit: contain;
 }
 :global(.image-gallery-thumbnail img) {
-    height: 40px;
+    height: $iconWidth;
     object-fit: contain;
 }
 :global(.image-gallery-content.fullscreen .image-gallery-slide img) {
-    width: 80%;
-    height: 80%;
+    width: $elementWidthThird;
+    height: $elementWidthThird;
     object-fit: contain;
 }
 :global(.image-gallery-content.fullscreen .image-gallery-thumbnail img) {
-    height: 80px;
+    height: $pageMarginSecond;
     object-fit: contain;
 }

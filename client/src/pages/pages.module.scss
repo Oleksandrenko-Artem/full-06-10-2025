@@ -1,17 +1,17 @@
 @use '/src/common/styles/colors' as *;
 @use '/src/common/styles/widths' as *;
 @use '/src/common/styles/mixins' as *;
+@use '/src/common/styles/templates' as *;
 
 .page-padding {
-    padding: 0 50px 20px 50px;
+    padding: $paddingZero $pageMargin $spanMargin $pageMargin;
     h2 {
         text-align: center;
         text-transform: capitalize;
     }
     .image, .link-home {
-        display: flex;
-        justify-content: center;
-        padding: 12px;
+        @extend %flex-center;
+        padding: $formGap;
     }
     .link-home, .personal-info {
         button { 
@@ -29,16 +29,24 @@
         }
     }
     .link-shop {
-        display: flex;
-        justify-content: center;
+        @extend %flex-center;
     }
     .orders-list {
-        padding: 20px 0;
+        padding: $spanMargin $paddingZero;
+    }
+    .filter {
+        @extend %flex-center;
+    }
+    .filter {
+        display: flex;
+        padding: $formGap;
     }
     .paginate {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
+        @extend %flex-center;
+        margin-bottom: $spanMargin;
+    }
+    .product-section {
+        min-height: $inputWidthSecond;
     }
 }
 .admin {
@@ -47,13 +55,13 @@
         text-transform: capitalize;
     }
     ul {
-        padding: 0 50px 0 50px;
+        padding: $paddingZero $pageMargin;
     }
     .admin-links {
+        @include border-bottom($grey100);
         display: flex;
-        gap: 18px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid $grey100;
+        gap: $paragraphFont;
+        padding-bottom: $formGap;
     }
     .active {
         color: $primary;

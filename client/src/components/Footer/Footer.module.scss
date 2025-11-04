@@ -1,0 +1,61 @@
+@use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/mixins' as *;
+@use '/src/common/styles/templates' as *;
+@use '/src/common/styles/breakpoints' as *;
+
+.wrapper {
+    background-color: $grey900;
+    padding-bottom: $svgMargin;
+}
+.footer {
+    @include border-bottom($grey500);
+    display: flex;
+    justify-content: space-between;
+    color: $white;
+    gap: $formGapSecond;
+    margin: $paddingZero $pageMargin;
+    div {
+        gap: $spanMargin;
+        margin-top: $pageMargin;
+        padding-bottom: $spanMargin;
+    }
+    p {
+        font-size: $paragraphFont;
+    }
+    a {
+        color: $grey400;
+        font-size: $cartPadding;
+        transition: $hoverEffect;
+        &:hover {
+            transition: $hoverEffect;
+            color: $white;
+        }
+    }
+    .footer-logo {
+        a {
+            color: $white;
+            font-size: $linkFontSize;
+            padding: $linkPadding;
+            transition: $hoverEffect;
+            &:hover {
+                transition: $hoverEffect;
+                color: $primary;
+            }
+        }
+    }
+    .account, .categories {
+        @include flex-column();
+    }
+    .categories {
+        list-style: none;
+    }
+    @media screen and (max-width: $m) {
+        @include flex-column();
+        align-items: center;
+    }
+}
+.bottom-div {
+    color: $grey400;
+    margin: $paddingZero $pageMargin;
+}

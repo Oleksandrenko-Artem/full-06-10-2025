@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'; 
 import { getOneProductByIdThunk } from '../store/productsSlice';
 import Product from '../components/Product/Product';
+import Spinner from '../components/Spinner/Spinner';
 import styles from './pages.module.scss';
 
 const ProductPage = () => {
@@ -21,8 +22,7 @@ const ProductPage = () => {
         <section className={styles['page-padding']}>
             <h2>Product page</h2>
             {error && <p>{error}</p>}
-            {isLoading && <p>Loading...</p>}
-            <Product product={selectedProduct} />
+            {isLoading ? <Spinner /> : <Product product={selectedProduct} />}
         </section>
     );
 };

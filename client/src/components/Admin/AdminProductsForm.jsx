@@ -42,19 +42,19 @@ const AdminProductsForm = (props) => {
                     <h2>{selectedProduct ? 'Update product' : 'Create product'}</h2>
                     <label>
                         <Field name="title" type="text" placeholder="Title" />
-                        <ErrorMessage name="title" />
+                        <ErrorMessage name="title" component="div" className={styles.error} />
                     </label>
                     <label>
                         <Field name="description" type="text" placeholder="Description" />
-                        <ErrorMessage name="description" />
+                        <ErrorMessage name="description" component="div" className={styles.error} />
                     </label>
                     <label>
                         <Field name="price" type="number" step="0.01" placeholder="Price" />
-                        <ErrorMessage name="price" />
+                        <ErrorMessage name="price" component="div" className={styles.error} />
                     </label>
                     <label>
                         <Field name="stockQty" type="number" min="0" placeholder="StockQty" />
-                        <ErrorMessage name="stockQty" />
+                        <ErrorMessage name="stockQty" component="div" className={styles.error} />
                     </label>
                     <label>
                         <Field name="category" as="select">
@@ -63,14 +63,14 @@ const AdminProductsForm = (props) => {
                         </Field>
                         <ErrorMessage name="category" />
                     </label>
-                    <label>
+                    <label className={styles['checkbox-label']}>
                         <span>IsSale</span>
                         <Field name="isSale" type="checkbox" />
-                        <ErrorMessage name="isSale" />
+                        <ErrorMessage name="isSale" component="div" className={styles.error} />
                     </label>
                     <label>
                         <input name="images" type="file" multiple onChange={(event) => { setFieldValue('images', Array.from(event.target.files)) }} />
-                        <ErrorMessage name="images" />
+                        <ErrorMessage name="images" component="div" className={styles.error} />
                     </label>
                     <button type='submit'>{selectedProduct ? 'Update' : 'Create'}</button>
                 </Form>

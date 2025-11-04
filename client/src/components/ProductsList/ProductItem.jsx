@@ -27,7 +27,7 @@ const ProductItem = (props) => {
         <article className={styles.product} onClick={navigateProduct}>
             {isSale && <Icon size={1.5} path={mdiSale} color='green' />}
             <div className={styles.picture}>
-                {images && images.length === 0 ? <Icon size={10} path={mdiImage} /> : <img src={`${CONSTANTS.BASE_URL}/${CONSTANTS.UPLOAD_FOLDER}/${images[0]}`} alt={title} />}
+                {images && images.length === 0 ? <Icon size={8} path={mdiImage} /> : <img src={`${CONSTANTS.BASE_URL}/${CONSTANTS.UPLOAD_FOLDER}/${images[0]}`} alt={title} />}
             </div>
             <h4>{title}</h4>
             {category?.name && <p>Category: <Link to={`/categories/${category?._id}`} onClick={handleCategory}>{category.name}</Link></p>}

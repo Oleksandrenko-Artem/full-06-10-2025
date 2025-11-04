@@ -6,7 +6,8 @@ const stripe = require('stripe')(CONSTANTS.STRIPE_SECRET_KEY);
 
 module.exports.countAllOrders = async (req, res, next) => {
     try {
-        const ordersAmount = await Order.countDocuments();
+        const filter = req.filter || {};
+        const ordersAmount = await Order.countDocuments(filter);
         res.status(200).send({ data: ordersAmount });
     } catch (error) {
         next(error);

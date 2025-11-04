@@ -1,0 +1,18 @@
+@use '/src/common/styles/colors' as *;
+
+%flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+%error-style {
+    color: $danger;
+    text-transform: capitalize;
+    padding-top: 10px;
+}
+%order-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

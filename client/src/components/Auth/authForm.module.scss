@@ -1,6 +1,8 @@
 @use '/src/common/styles/colors' as *;
 @use '/src/common/styles/widths' as *;
 @use '/src/common/styles/mixins' as *;
+@use '/src/common/styles/templates' as *;
+@use '/src/common/styles/breakpoints' as *;
 
 .form{
     @include form($formWidth,
@@ -12,8 +14,7 @@
         text-align: center;
     }
     label {
-        display: flex;
-        flex-direction: column;
+        @include flex-column();
         input {
             @include input-text-btn(
                 $inputHeight,
@@ -24,8 +25,7 @@
                 );
         }
         .error {
-            color: $danger;
-            text-transform: capitalize;
+            @extend %error-style;
         }
     }
     button {
@@ -35,5 +35,13 @@
             $buttonFontSize,
             $buttonFontWeight,
             $buttonBorderRadius);
+    }
+    @media screen and (max-width: $s) {
+        width: $elementWidthThird;
+        label {
+            input {
+                width: $elementWidth;
+            }
+        }
     }
 }

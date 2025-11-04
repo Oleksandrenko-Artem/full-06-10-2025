@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ProductsList from '../components/ProductsList/ProductsList';
+import Spinner from '../components/Spinner/Spinner';
 import styles from './pages.module.scss';
 
 const SearchResults = () => {
@@ -9,8 +10,7 @@ const SearchResults = () => {
         <div className={styles['page-padding']}>
             <h2>Search results</h2>
             {error && <p>{error}</p>}
-            {isLoading && <p>Loading...</p>}
-            <ProductsList products={products} />
+            {isLoading ? <Spinner /> : <ProductsList products={products} />}
         </div>
     );
 };

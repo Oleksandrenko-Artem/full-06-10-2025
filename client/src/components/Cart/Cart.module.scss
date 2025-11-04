@@ -1,19 +1,19 @@
 @use '/src/common/styles/colors' as *;
 @use '/src/common/styles/widths' as *;
 @use '/src/common/styles/mixins' as *;
+@use '/src/common/styles/templates' as *;
+@use '/src/common/styles/breakpoints' as *;
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
+    @include flex-column();
 }
 .cart{
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    @extend %flex-center;
+    gap: $spanMargin;
 }
 section>div>div {
-    border: 1px solid $grey100;
-    border-radius: 8px;
+    @include border-button($grey100);
+    border-radius: $buttonPaddingSecond;
 }
 .products-cart {
     width: 872px;
@@ -21,10 +21,9 @@ section>div>div {
         text-align: center;
     }
     .cart-btn {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 14px 32px 14px 32px;
+        @extend %flex-center;
+        gap: $formGap;
+        padding: $cartPadding 32px;
         justify-content: space-between;
         button {
             cursor: pointer;
@@ -44,18 +43,22 @@ section>div>div {
         }
 }
 .cart-item {
-    display: flex;
+    @extend %flex-center;
+    @include border-bottom($grey100);
     justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid $grey100;
-    padding: 12px;
+    padding: $formGap;
     .product-title {
-        display: flex;
-        gap: 12px;
-        align-items: center;
+        @extend %flex-center;
+        gap: $formGap;
         img {
-            width: 80px;
-            height: 80px;
+            width: $pageMarginSecond;
+            height: $pageMarginSecond;
+            border-radius: $buttonPaddingSecond;
+            margin-left: $imgMargin;
+            margin-right: $imgMargin;
+        }
+        svg {
+            color: $grey400;
         }
         p {
             color: $grey900;
@@ -63,30 +66,47 @@ section>div>div {
         }
     }
     .quantity-btns {
-        display: flex;
-        gap: 20px;
+        @extend %flex-center;
+        @include border-button($grey100);
+        gap: $spanMargin;
         width: 134px;
-        height: 50px;
-        border: 1px solid $grey100;
-        border-radius: 50px;
-        align-items: center;
-        padding: 8px;
+        height: $pageMargin;
+        border-radius: $pageMargin;
+        padding: $buttonPaddingSecond;
         button {
+            @include border-button($grey100);
             color: $grey900;
             background-color: $grey50;
-            width: 34px;
-            height: 34px;
-            border: 1px solid $grey100;
-            border-radius: 34px;
+            width: $buttonBorderRadiusSecond;
+            height: $buttonBorderRadiusSecond;
+            border-radius: $buttonBorderRadiusSecond;
+        }
+    }
+    @media screen and (max-width: $m) {
+        font-size: $cartPadding;
+        .product-title {
+            gap: $paddingZero;
+        }
+        .quantity-btns {
+            width: 74px;
+            gap: $svgMargin;
+            button {
+                width: $formPadding;
+                height: $formPadding;
+            }
         }
     }
 }
 .cart-header {
-    display: flex;
+    @extend %flex-center;
+    @include border-bottom($grey100);
     justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid $grey100;
-    padding: 0 120px 0 12px;
+    padding: $paddingZero 120px $paddingZero $formGap;
+    @media screen and (max-width: $m) {
+        justify-content: center;
+        gap: $itemWidth;
+        padding: $paddingZero;
+    }
 }
 .cart-form {
     @include form(
@@ -94,22 +114,23 @@ section>div>div {
         $formMarginTop,
         $formBoxShadow,
         $formPadding,
-        $formGap);
+        $formGap
+        );
     label {
-        display: flex;
-        flex-direction: column;
+        @include flex-column();
         input, select {
             @include input-text-btn(
                 $inputHeight,
                 $inputWidth,
                 $inputBorder,
                 $buttonFontSize,
-                $buttonPadding );
+                $buttonPadding 
+                );
             }
         select {
             color: $grey500;
             text-transform: capitalize;
-            padding: 0 0 0 12px;
+            padding: $paddingZero $paddingZero $paddingZero $formGap;
         }
     }
     button {
@@ -123,6 +144,29 @@ section>div>div {
             );
         &:hover {
             background-color: $softPrimary;
+        }
+    }
+    @media screen and (max-width: $m){
+        @include form(
+            $elementWidth,
+            $formMarginTop,
+            $formBoxShadow,
+            $formPadding,
+            $formGap
+            );
+        label {
+            input, select {
+                @include input-text-btn(
+                    $inputHeight,
+                    $elementWidth,
+                    $inputBorder,
+                    $buttonFontSize,
+                    $buttonPadding 
+                    );
+                }
+            select {
+                height: 45px;
+            }
         }
     }
 }

@@ -1,0 +1,37 @@
+@use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/templates' as *;
+
+.container {
+    @extend %flex-center;
+}
+.loader {
+    width: 28px;
+    height: 28px;
+    border-radius: $elementWidthSecond;
+    display: inline-block;
+    position: relative;
+    background: linear-gradient(0deg, $grey300 33%, $grey100 100%);
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+.loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: $elementWidthSecond;
+    top: $elementWidthSecond;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border-radius: $elementWidthSecond;
+    background: $white;
+}
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

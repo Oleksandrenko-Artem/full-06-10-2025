@@ -6,6 +6,7 @@ import { getAccountOrdersThunk } from '../store/ordersSlice';
 import OrdersList from '../components/OrdersList/OrdersList';
 import OrdersDetails from '../components/OrdersList/OrdersDetails';
 import UpdateUserForm from '../components/Auth/UpdateUserForm';
+import Spinner from '../components/Spinner/Spinner';
 import styles from './pages.module.scss';
 
 const ProfilePage = () => {
@@ -39,9 +40,9 @@ const ProfilePage = () => {
                     <UpdateUserForm setIsUpdate={setIsUpdate} />
                 ) : (
                     <div>
-                        <p>Birthday year: {user?.birthYear}</p>
-                        <p>Email: {user?.email}</p>
-                        <p>Role: {user?.role}</p>
+                        <p><b>Birthday year:</b> {user?.birthYear}</p>
+                        <p><b>Email:</b> {user?.email}</p>
+                        <p><b>Role:</b> {user?.role}</p>
                         <button onClick={handleChange}>Change personal info</button>
                     </div>     
                 )}
@@ -51,9 +52,8 @@ const ProfilePage = () => {
             </div>
             <div className={styles['orders-list']}>
                 {errorOrders && <p>{errorOrders}</p>}
-                {isLoading && <p>Loading...</p>}
                 {ordersAccount?.length > 0 ? (
-                    <OrdersList orders={ordersAccount} setIdOrder={setIdOrder} />
+                    isLoading ? <Spinner /> : <OrdersList orders={ordersAccount} setIdOrder={setIdOrder} />
                 ) : (
                     <p>Empty orders list</p>
                 )}

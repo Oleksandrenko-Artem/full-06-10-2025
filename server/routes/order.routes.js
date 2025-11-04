@@ -12,7 +12,7 @@ router.post('/', auth, validate(createOrderSchema), createOrder);
 router.post('/create-checkout-session', createCheckoutSession);
 router.get('/', auth, isAdmin, paginate, filterOrders, getAllOrders);
 router.get('/account', auth, paginate, getAccountOrders);
-router.get('/countAllOrders', auth, isAdmin, countAllOrders);
+router.get('/countAllOrders', auth, isAdmin, filterOrders, countAllOrders);
 router.get('/:orderId', auth, getOneOrder);
 router.patch('/:orderId', auth, canUpdateOrderStatus, validate(updateStatusOrderSchema), updateStatusOrder);
 

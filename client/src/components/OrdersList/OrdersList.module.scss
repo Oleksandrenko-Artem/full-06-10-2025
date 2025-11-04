@@ -1,14 +1,16 @@
 @use '/src/common/styles/colors' as *;
 @use '/src/common/styles/widths' as *;
 @use '/src/common/styles/mixins' as *;
+@use '/src/common/styles/templates' as *;
+@use '/src/common/styles/breakpoints' as *;
 
 .order-info {
-    padding: 20px;
+    padding: $spanMargin;
     background-color: $grey50;
     button {
         @include btn(
             $white,
-            10px,
+            $cellPadding,
             $primary,
             $buttonFontSize,
             $buttonFontWeight,
@@ -21,52 +23,62 @@
         }
 }
 .order-table {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    border: 1px solid $grey100;
+    @extend %order-display;
+    @include border-button($grey100);
+    gap: $svgMargin;
     margin: auto;
-    padding: 10px;
-    border-radius: 8px;
+    padding: $cellPadding;
+    border-radius: $buttonPaddingSecond;
     text-transform: capitalize;
     table {
-        border: 1px solid $grey400;
+        @include border-button($grey400);
     }
     thead, tbody {
-        width: 100%;
-        border: 1px solid $grey300;
+        @include border-button($grey300);
+        width: $elementWidth;
     }
     th {
+        @include border-button($grey200);
         width: 13%;
-        padding: 10px 46.4px;
-        border: 1px solid $grey200;
+        padding: $cellPadding 46.4px;
     }
     td {
+        @include border-button($grey100);
         width: 19%;
         text-align: center;
-        padding: 10px;
-        border: 1px solid $grey100;
+        padding: $cellPadding;
     }
     button {
         @include btn(
             $white,
-            10px,
+            $cellPadding,
             $primary,
             $buttonFontSize,
             $buttonFontWeight,
             $buttonBorderRadius
             );
-        width: 100%;
+        width: $elementWidth;
         &:hover {
             background-color: $softPrimary;
         }
     }
     .products {
-        width: 100%;
+        width: $elementWidth;
         td {
             width: 5%;
+        }
+    }
+    @media screen and (max-width: $m){
+        th {
+            padding: $cellPadding;
+        }
+        td, th, button {
+            font-size: 11px;
+        }
+    }
+    @media screen and (max-width: $s){
+        td, th, button {
+            font-size: 9px;
         }
     }
 }

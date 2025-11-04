@@ -1,0 +1,45 @@
+@use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/mixins' as *;
+@use '/src/common/styles/templates' as *;
+@use '/src/common/styles/breakpoints' as *;
+
+.filter-form {
+    display: flex;
+    border: none;
+    div {
+        @extend %flex-center;
+        gap: $cellPadding;
+        padding: $svgMargin;
+    }
+    input[type="text"], input[type="number"] {
+        @include input-text-btn(
+            $inputHeight,
+            $inputWidthThird,
+            $inputBorder,
+            $buttonFontSize,
+            $buttonPadding 
+            );
+        }
+    input[type="checkbox"] {
+        height: $spanMargin;
+        width: $spanMargin;
+    }
+    select {
+        @include input-text-btn(
+            $inputHeight,
+            $inputWidthThird,
+            $inputBorder,
+            $buttonFontSize,
+            $buttonPadding
+            );
+            color: $grey500;
+            padding: $paddingZero;
+            margin: $paddingZero;
+            width: $pageMargin;
+            text-align: center;
+        }
+        @media screen and (max-width: $l) {
+            @include flex-wrap();
+        }
+}

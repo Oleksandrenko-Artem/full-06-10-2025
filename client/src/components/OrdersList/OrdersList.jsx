@@ -9,7 +9,7 @@ const OrdersList = (props) => {
         <table className={styles['order-table']}>
             <thead>
                 <tr>
-                   <th>order id</th>
+                    <th>order id</th>
                     <th>data</th>
                     <th>total</th>
                     <th>status</th>

@@ -42,11 +42,14 @@ export const deleteProduct = (id) => apiClient.delete(`/products/${id}`);
 export const createOrder = (values) => apiClient.post('/orders', values);
 export const createCheckoutSession = (id, products) => apiClient.post('/orders/create-checkout-session', { id, products });
 export const updateOrderStatus = (id, status) => apiClient.patch(`/orders/${id}`, { status });
-export const getOrdersForAdmin = (options) => {
-    const query = queryString.stringify(options);
+export const getOrdersForAdmin = (values) => {
+    const query = queryString.stringify(values);
     return apiClient.get(`/orders?${query}`);
 };
-export const getOrdersAmount = () => apiClient.get('/orders/countAllOrders');
+export const getOrdersAmount = (values) => {
+    const query = queryString.stringify(values);
+    return apiClient.get(`/orders/countAllOrders?${query}`);
+};
 export const getAccountOrders = () => apiClient.get('/orders/account');
 export const getOneOrderById = (id) => apiClient.get(`/orders/${id}`);
 // stats

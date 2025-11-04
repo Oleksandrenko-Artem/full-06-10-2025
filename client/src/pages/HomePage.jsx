@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProductsThunk, getProductsAmountThunk } from '../store/productsSlice';
 import ProductsList from '../components/ProductsList/ProductsList';
 import Pagination from '../components/Pagination/Pagination';
+import FilterProduct from '../components/FiltersPanel/FilterProduct';
+import Spinner from '../components/Spinner/Spinner';
 import CONSTANTS from '../constants';
 import styles from './pages.module.scss';
-import FiltersPanel from '../components/FiltersPanel/FiltersPanel';
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -43,12 +44,15 @@ const HomePage = () => {
         <div className={styles['page-padding']}>
             <h2>Home</h2>
             {error && <p>{error}</p>}
-            {isLoading && <p>Loading...</p>}
-            <FiltersPanel setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setCategory={setCategory} setInStock={setInStock} setInSale={setInSale} minPrice={minPrice} maxPrice={maxPrice} category={category} inStock={inStock} inSale={inSale} />
+            <div className={styles.filter}>
+                <FilterProduct setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setCategory={setCategory} setInStock={setInStock} setInSale={setInSale} minPrice={minPrice} maxPrice={maxPrice} category={category} inStock={inStock} inSale={inSale} />
+            </div>
             <div className={styles.paginate}>
                 <Pagination page={page} setPage={setPage} total={totalProducts} amount={amount} setAmount={setAmount} />
             </div>
-            <ProductsList products={products} />
+            <div className={styles['product-section']}>
+                {isLoading ? <Spinner /> : <ProductsList products={products} />}
+            </div>
         </div>
     );
 };

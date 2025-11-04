@@ -1,29 +1,31 @@
 @use '/src/common/styles/colors' as *;
+@use '/src/common/styles/widths' as *;
+@use '/src/common/styles/mixins' as *;
+@use '/src/common/styles/templates' as *;
 
 .products {
-    display: flex;
+    @extend %flex-center;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 24px;
+    gap: $formPadding;
     svg {
         position: absolute;
-        margin: 5px;
+        margin: $svgMargin;
     }
 }
 .product {
     cursor: pointer;
-    width: 312px;
-    border: 1px solid $grey100;
-    padding: 12px;
+    @include border-button($grey100);
+    width: 232px;
+    padding: $formGap;transition: $hoverEffect;
     &:hover {
-        border: 1px solid $primary;
+        transition: $hoverEffect;
+        @include border-button($primary);
     }
     h4 {
         color: $primary;
     }
     div {
-        display: flex;
-        flex-direction: row;
+        @include flex-row();
         justify-content: space-between;
         align-items: center;
     }
@@ -32,24 +34,25 @@
     }
     .cart-img {
         position: relative;
-        margin: 0;
+        margin: $paddingZero;
+        transition: $hoverEffect;
         &:hover {
+            transition: $hoverEffect;
             color: $primary;
         }
     }
 }
 .picture {
-    width: 280px;
-    height: 280px;
+    width: $pictureWidth;
+    height: $pictureWidth;
     background-color: $grey100;
     margin-left: 3px;
     svg {
         color: $grey400;
-        margin-left: 20px;
     }
     img {
-        width: 100%;
-        height: 100%;
+        width: $elementWidth;
+        height: $elementWidth;
         object-fit: cover;
     }
 }

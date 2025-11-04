@@ -20,6 +20,7 @@ import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
 import ProfilePage from './pages/ProfilePage';
 import SalePage from './pages/SalePage';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const App = () => {
 
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

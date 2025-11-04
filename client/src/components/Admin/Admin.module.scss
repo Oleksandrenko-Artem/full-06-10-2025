@@ -1,9 +1,12 @@
 @use '/src/common/styles/colors' as *;
 @use '/src/common/styles/widths' as *;
 @use '/src/common/styles/mixins' as *;
+@use '/src/common/styles/templates' as *;
+@use '/src/common/styles/breakpoints' as *;
 
 .form {
-    @include form($formWidth,
+    @include form(
+        $formWidth,
         $formMarginTop,
         $formBoxShadow,
         $formPadding,
@@ -12,9 +15,7 @@
         text-align: center;
     }
     label {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+        @extend %order-display;
         input[type="text"], input[type="number"] {
             @include input-text-btn(
                 $inputHeight,
@@ -24,9 +25,14 @@
                 $buttonPadding
                 );
         }
-        input[type="checkbox"]{
-            height: 20px;
-            width: 20px;
+        input[type="checkbox"] {
+            height: $spanMargin;
+            width: $spanMargin;
+            margin-left: $spanMargin;
+        }
+        input[type="file"] {
+            display: flex;
+            align-self: flex-start;
         }
         select {
             @include input-text-btn(
@@ -37,12 +43,16 @@
                 $buttonPadding
                 );
             color: $grey500;
-            padding: 0 0 0 12px;
+            padding: $paddingZero $paddingZero $paddingZero $formGap;
         }
         span {
             width: 15%;
-            padding: 16px;
+            padding: $buttonFontSize;
             color: $grey500;
+        }
+        .error {
+            @extend %error-style;
+            align-self: flex-start;
         }
     }
     button {
@@ -58,38 +68,58 @@
             background-color: $softPrimary;
         }
     }
+    .checkbox-label {
+        @include flex-row();
+    }
+    @media screen and (max-width: $m) {
+        width: $elementWidth;
+        label {
+            input[type="text"], input[type="number"], input[type="file"], select {
+                width: $elementWidth;
+            }
+        }
+        .checkbox-label {
+            span {
+                margin-right: $spanMargin;
+            }
+        }
+    }
+    @media screen and (max-width: $s) {
+        .checkbox-label {
+            span {
+                margin-right: $spanMargin;
+            }
+        }
+    }
 }
 .admin-table {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    border: 1px solid $grey100;
-    margin: 10px 60px 10px 60px;
-    padding: 10px;
-    border-radius: 8px;
+    @extend %order-display;
+    @include border-button($grey100);
+    gap: $formGap;
+    margin: $cellPadding $formGapSecond;
+    padding: $cellPadding;
+    border-radius: $buttonPaddingSecond;
     text-transform: capitalize;
     table {
-        border: 1px solid $grey300;
+        @include border-button($grey300);
     }
     th {
-        padding: 10px;
-        border: 1px solid $grey200;
+        @include border-button($grey200);
+        padding: $cellPadding;
     }
     td {
+        @include border-button($grey100);
         text-align: center;
-        padding: 10px;
-        border: 1px solid $grey100;
+        padding: $cellPadding;
         img {
-            width: 40px;
-            height: 40px;
+            width: $iconWidth;
+            height: $iconWidth;
             object-fit: cover;
-            margin-top: 10px;
+            margin-top: $cellPadding;
         }
         svg {
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: $cellPadding;
             &:hover {
                 color: $primary;
             }
@@ -98,51 +128,57 @@
     select {
         @include input-text-btn(
             $inputHeight,
-            100px,
+            $inputWidthThird,
             $inputBorder,
             $buttonFontSize,
             $buttonPadding 
             );
             color: $grey500;
-            padding: 0 0 0 12px;
-            margin-bottom: 10px;
-            width: 100%;
+            padding: $paddingZero $paddingZero $paddingZero $formGap;
+            margin-bottom: $cellPadding;
+            width: $elementWidth;
         }
     button {
         @include btn($white,
-            10px,
+            $cellPadding,
             $primary,
             $buttonFontSize,
             $buttonFontWeight,
             $buttonBorderRadius
             );
-        width: 100%;
+        width: $elementWidth;
         &:hover {
             background-color: $softPrimary;
         }
     }
     .order-nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        @extend %order-display;
+        .filter {
+            @extend %flex-center;
+            border: none;
+            select {
+                padding: $paddingZero;
+                margin: $paddingZero;
+            }
+        }
     }
     .table-products, .table-orders, .table-categories, .table-stats {
-        width: 100%;
+        width: $elementWidth;
     }
     .table-orders {
         .product-table {
             margin: auto;
-            width: 100%;
+            width: $elementWidth;
         }
         tbody {
-            padding: 30px;
+            padding: $imgPadding;
         }
     }
 }
 .product-info {
     margin: auto;
     td {
-        width: 100%;
+        width: $elementWidth;
     }
     .product-title {
         width: 35%;

@@ -1,23 +1,31 @@
 @use '/src/common/styles/colors' as *;
 @use '/src/common/styles/widths' as *;
 @use '/src/common/styles/mixins' as *;
+@use '/src/common/styles/templates' as *;
+@use '/src/common/styles/breakpoints' as *;
 
 .header-div {
     color: $grey300;
     background-color: $grey800;
+    a, button {
+        transition: $hoverEffect;
+    }
+    a:hover, button:hover {
+        transition: $hoverEffect;
+        color: $white;
+    }
 }
 .header-div, .logo-border, .nav-border {
-    padding: 0 50px 0 50px;
-    border-bottom: 1px solid $grey100;
+    @include border-bottom($grey100);
+    padding: $paddingZero $pageMargin;
 }
 .logo {
-    display: flex;
-    align-items: center;
+    @extend %flex-center;
     justify-content: space-between;
-    padding: 18px 0 18px 0;
+    padding: $paragraphFont $paddingZero;
     a {
-        font-size: 38px;
-        padding: 4px;
+        font-size: $linkFontSize;
+        padding: $linkPadding;
     }
     img {
         width: 34px;
@@ -25,94 +33,112 @@
     }
     input {
         @include input-text-btn($inputHeight, $inputWidthSecond, $inputBorder, $buttonFontSize, $buttonPadding);
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
+        @include input-radius($inputBorderRadius);
     }
     .logo-link {
-        display: flex;
-        align-items: center;
-        &:hover {
+        @extend %flex-center;
+        a {
+            transition: $hoverEffect;
+        }
+        a:hover {
+            transition: $hoverEffect;
             color: $primary;
         }
     }
     .cart-link {
         cursor: pointer;
-        display: flex;
-        align-items: center;
+        @extend %flex-center;
+        transition: $hoverEffect;
         &:hover {
+            transition: $hoverEffect;
             color: $primary;
         }
         .items-length {
+            @include border-button($hardPrimary);
             position: absolute;
-            top: 60px;
-            margin: 30px;
-            width: 25px;
-            height: 25px;
+            margin: -20px $imgPadding;
+            width: $itemWidth;
+            height: $itemWidth;
             text-align: center;
             color: $white;
-            border: 1px solid $hardPrimary;
-            border-radius: 40px;
+            border-radius: $iconWidth;
             background-color: $hardPrimary;
-            font-size: 16px;
+            font-size: $buttonFontSize;
         }
         svg {
-            margin-top: 14px;
+            margin-top: $cartPadding;
         }
         div {
             span {
                 position: absolute;
                 text-align: center;
-                font-size: 10px;
-                margin-top: 8px;
+                font-size: $cellPadding;
+                margin-top: $buttonPaddingSecond;
             }
             p {
-                font-size: 16px;
-                padding-top: 25px;
-                padding-bottom: 10px;
+                font-size: $buttonFontSize;
+                padding-top: $itemWidth;
+                padding-bottom: $cellPadding;
             }
         }
     }
     .search {
-        display: flex;
-        align-items: center;
+        @extend %flex-center;
         div {
-            display: flex;
-            justify-content: center;
-            width: 80px;
+            @extend %flex-center;
+            @include input-radius($inputBorderRadius);
+            width: $pageMarginSecond;
             height: $inputHeight;
             background-color: $primary;
-            border-top-right-radius: 6px;
-            border-bottom-right-radius: 6px;
             svg {
                 cursor: pointer;
                 color: $white;
             }
         }
     }
+    @media screen and (max-width: $l){
+        @include flex-column();
+    }
+    @media screen and (max-width: $s){
+        .search {
+            div {
+                width: $pageMargin;
+            }
+        }
+    }
 }
 .menu {
-    display: flex;
-    flex-direction: row;
-    padding: 16px 0 16px 0;
-    gap: 20px;
+    @include flex-row();
+    padding: $buttonFontSize $paddingZero;
+    gap: $spanMargin;
+    li {
+        transition: $hoverEffect;
+    }
     .active {
         color: $primary;
     }
+    li:hover {
+        transition: $hoverEffect;
+        color: $softPrimary;
+    }
+    @media screen and (max-width: $l) {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 .sign {
-    display: flex;
+    @include flex-row();
     align-items: center;
-    flex-direction: row;
     justify-content: flex-end;
-    gap: 20px;
-    padding: 12px 0 12px 0;
+    gap: $spanMargin;
+    padding: $formGap $paddingZero;
     span, a {
         font-weight: 400;
     }
     button {
         cursor: pointer;
         color: $grey300;
-        font-size: 16px;
+        font-size: $buttonFontSize;
         font-weight: 500;
         background-color: $grey800;
         border: none;

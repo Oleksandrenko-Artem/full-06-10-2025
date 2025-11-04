@@ -2,9 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createOrder, getAccountOrders, getOneOrderById, getOrdersAmount, getOrdersForAdmin, updateOrderStatus } from "../api";
 import { pendingCase, rejectedCase } from "./functions";
 
-export const getOrdersAmountThunk = createAsyncThunk('orders/getOrdersAmountThunk', async (_, thunkAPI) => {
+export const getOrdersAmountThunk = createAsyncThunk('orders/getOrdersAmountThunk', async (values, thunkAPI) => {
     try {
-        const response = await getOrdersAmount();
+        const response = await getOrdersAmount(values);
         return response.data.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error?.message);
@@ -29,9 +29,9 @@ export const getAccountOrdersThunk = createAsyncThunk('orders/getAccountOrdersTh
     }
 });
 
-export const getOrdersForAdminThunk = createAsyncThunk('orders/getOrdersForAdminThunk', async (options, thunkAPI) => {
+export const getOrdersForAdminThunk = createAsyncThunk('orders/getOrdersForAdminThunk', async (values, thunkAPI) => {
     try {
-        const response = await getOrdersForAdmin(options);
+        const response = await getOrdersForAdmin(values);
         return response.data.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error?.message);

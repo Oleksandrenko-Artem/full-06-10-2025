@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Icon } from '@mdi/react';
-import { mdiCloseCircleOutline } from '@mdi/js';
+import { mdiCloseCircleOutline, mdiImage } from '@mdi/js';
 import { decrementQuantity, incrementQuantity, removeFromCart } from '../../store/cartSlice';
 import styles from './Cart.module.scss';
 import CONSTANTS from '../../constants';
@@ -21,7 +21,7 @@ const CartItem = (props) => {
     return (
         <li className={styles['cart-item']}>
             <div className={styles['product-title']}>
-                <img src={`${CONSTANTS.BASE_URL}/${CONSTANTS.UPLOAD_FOLDER}/${item?.images[0]}`} alt={item.title} />
+                {item?.images && item?.images.length === 0 ? <Icon size={4.5} path={mdiImage} /> : <img src={`${CONSTANTS.BASE_URL}/${CONSTANTS.UPLOAD_FOLDER}/${item?.images[0]}`} alt={item?.title} />}
                 <p>{item.title}</p>
             </div>
             <p>${item.price.toFixed(2)}</p>
