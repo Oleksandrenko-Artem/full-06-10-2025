@@ -36,6 +36,11 @@
             $buttonFontWeight,
             $buttonBorderRadius);
     }
+    .error {
+        @extend %error-style;
+        margin: $paddingZero;
+        padding: $paddingZero;
+    }
     @media screen and (max-width: $s) {
         width: $elementWidthThird;
         label {

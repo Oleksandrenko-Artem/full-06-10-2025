@@ -22,7 +22,7 @@ const RegisterForm = () => {
             {() => (
                 <Form className={styles.form}>
                     <h2>Sign up</h2>
-                    {error && error.includes('409') && <p>Email already exists</p>}
+                    {error && error.includes('409') && <p className={styles.error}>Email already exists</p>}
                     <label>
                         <Field name="name" type="text" placeholder="Name" />
                         <ErrorMessage name="name" component="div" className={styles.error} />
